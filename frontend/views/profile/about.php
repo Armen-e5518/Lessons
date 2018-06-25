@@ -1,19 +1,22 @@
 <?php
-
-/* @var $this yii\web\View */
-
 use yii\helpers\Html;
-
+/* @var $this yii\web\View */
 $this->registerCssFile('/main/assets/css/bootstrap.min.css');
 $this->registerCssFile('/main/assets/css/reset.css');
 $this->registerCssFile('/main/assets/css/style.css');
 $this->registerCssFile('https://use.fontawesome.com/releases/v5.0.13/css/all.css');
 
 
+
 $this->title = '“Առողջ Ապրելակերպ”';
-$this->params['class'] = 'home-slide';
+$this->params['class'] = 'inner-page';
 $this->params['about'] = 'true';
 ?>
+<section class="breadcrumb">
+    <div class="container align-text">
+        <span class="page-title"><strong>Եղի′ր տեղեկացված, ապրի′ր առողջ</strong></span>
+    </div>
+</section>
 <section class="content-section">
     <div class="container">
         <h3>Lorem Ipsum</h3>

@@ -22,15 +22,50 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="<?= !empty($this->params['class'])?$this->params['class']:''?>">
+<body class="<?= !empty($this->params['class']) ? $this->params['class'] : '' ?>">
 <?php $this->beginBody() ?>
-<?=Html::beginForm(['/site/logout'], 'post')
-. Html::submitButton(
-    'Logout ',
-    ['class' => 'btn btn-link logout']
-)
-. Html::endForm()?>
-<?= $content ?>
+<div class="wrapper">
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/"><img src="/main/assets/images/logo.png" alt="Առողջ Ապրելակերպ" title="Առողջ Ապրելակերպ"></a>
+                <h1><a href="/">Առողջ <br>Ապրելակերպ</a></h1>
+            </div>
+            <label>
+                <input type="checkbox">
+                <span class="burger"></span>
+                <nav>
+                    <ul>
+                        <li><a href="/site/about" class="<?= !empty($this->params['about']) ? 'green-txt' : '' ?>">Դասընթացի
+                                մասին</a></li>
+                        <li><a href="/site/faq" class="<?= !empty($this->params['faq']) ? 'green-txt' : '' ?>">ՀՏՀ</a>
+                        </li>
+                        <li><a href="/site/contact" class="<?= !empty($this->params['contact']) ? 'green-txt' : '' ?>">Կապ</a>
+                        </li>
+                        <li><a href="/site/signup" class="<?= !empty($this->params['signup']) ? 'green-txt' : '' ?>"><i
+                                        class="fas fa-user-edit"></i>Գրանցում</a></li>
+                        <li><a href="/site/login" class="<?= !empty($this->params['login']) ? 'green-txt' : '' ?>"><i
+                                        class="fas fa-user-lock"></i>Մուտք</a></li>
+                    </ul>
+                </nav>
+            </label>
+        </div>
+    </header>
+    <?= $content ?>
+    <footer>
+        <div class="container">
+            <span class="copyright">&copy; 2018 “Առողջ Ապրելակերպ” առցանց դասընթաց</span>
+            <span class="partners">
+				<img src="/main/assets/images/UNFPA-logo.png" alt="UNFPA" title="UNFPA">
+				<img src="/main/assets/images/UN-logo.png" alt="UN" title="UN">
+            </span>
+        </div>
+    </footer>
+</div>
+<?php if (!empty($this->params['slider'])): ?>
+    <a href="<?=$this->params['slider_1']?>" class="slide-left"><i class="fas fa-angle-left"></i></a>
+    <a href="<?=$this->params['slider_2']?>" class="slide-right"><i class="fas fa-angle-right"></i></a>
+<?php endif; ?>
 <?php $this->endBody() ?>
 </body>
 </html>

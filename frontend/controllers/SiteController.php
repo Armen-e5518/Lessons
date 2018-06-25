@@ -51,6 +51,7 @@ class SiteController extends Controller
 
     public function beforeAction($action)
     {
+
         if(!Yii::$app->user->isGuest){
             $this->redirect('/lessons');
         }
@@ -85,6 +86,11 @@ class SiteController extends Controller
     public function actionIndex2()
     {
         return $this->render('index2');
+    }
+
+    public function actionFaq()
+    {
+        return $this->render('faq');
     }
     /**
      * Logs in a user.
