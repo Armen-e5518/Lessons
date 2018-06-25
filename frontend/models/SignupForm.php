@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\models;
 
 use yii\base\Model;
@@ -10,8 +11,15 @@ use common\models\User;
 class SignupForm extends Model
 {
     public $username;
-    public $email;
+//    public $email;
     public $password;
+    public $password_com;
+    public $first_name;
+    public $last_name;
+    public $city;
+    public $sex;
+    public $region;
+    public $community;
 
 
     /**
@@ -25,14 +33,16 @@ class SignupForm extends Model
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
-            ['email', 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
+            ['password_com', 'required'],
+            ['password_com', 'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
+
+            [['first_name', 'last_name', 'sex', 'region', 'city', 'community'], 'required'],
+            [['sex', 'region', 'city', 'community'], 'integer'],
+            [['first_name', 'last_name'], 'string', 'max' => 255],
         ];
     }
 
@@ -46,13 +56,20 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
-        
+
         $user = new User();
         $user->username = $this->username;
-        $user->email = $this->email;
+        $user->first_name = $this->first_name;
+        $user->last_name = $this->last_name;
+        $user->sex = $this->sex;
+        $user->region = $this->region;
+        $user->city = $this->city;
+        $user->community = $this->community;
+//        $user->email = $this->email;
+//        $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
-        
+
         return $user->save() ? $user : null;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use backend\components\Helper;
+use common\models\TestsQuestion;
 use Yii;
 use common\models\PreTests;
 use common\models\search\PreTestsSearch;
@@ -67,7 +69,7 @@ class PreTestsController extends Controller
         $model = new PreTests();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['update', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -86,12 +88,19 @@ class PreTestsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $post = Yii::$app->request->post();
+        if ($model->load($post) && $model->save()) {
+//            Helper::out($post['test']);
+//            die;
+            if (!empty($post['test'])) {
+                TestsQuestion::SaveTestsQuestion($model->id, $post['test']);
+            }
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'questions' => TestsQuestion::GetTestsQuestionByTestId($id),
         ]);
     }
 

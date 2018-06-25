@@ -24,6 +24,12 @@ AppAsset::register($this);
 </head>
 <body class="<?= !empty($this->params['class'])?$this->params['class']:''?>">
 <?php $this->beginBody() ?>
+<?=Html::beginForm(['/site/logout'], 'post')
+. Html::submitButton(
+    'Logout ',
+    ['class' => 'btn btn-link logout']
+)
+. Html::endForm()?>
 <?= $content ?>
 <?php $this->endBody() ?>
 </body>

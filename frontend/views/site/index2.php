@@ -25,8 +25,8 @@ $this->params['class'] = 'next-slide';
                         <li><a href="tests.html">Դասընթացի մասին</a></li>
                         <li><a href="#">ՀՏՀ</a></li>
                         <li><a href="#">Կապ</a></li>
-                        <li><a href="/site/signup" class="green-txt"><i class="fas fa-user-edit"></i>Գրանցում</a></li>
-                        <li><a href="/site/login"  class="green-txt"><i class="fas fa-user-lock"></i>Մուտք</a></li>
+                        <li><a href="/site/signup" class=""><i class="fas fa-user-edit"></i>Գրանցում</a></li>
+                        <li><a href="/site/login"  class=""><i class="fas fa-user-lock"></i>Մուտք</a></li>
                     </ul>
                 </nav>
             </label>

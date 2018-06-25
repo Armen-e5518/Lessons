@@ -16,6 +16,12 @@ use yii\web\IdentityInterface;
  * @property string $password_reset_token
  * @property string $email
  * @property string $auth_key
+ * @property string first_name
+ * @property string last_name
+ * @property string sex
+ * @property string region
+ * @property string city
+ * @property string community
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at

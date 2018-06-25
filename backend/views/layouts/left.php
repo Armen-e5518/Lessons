@@ -15,6 +15,8 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
+                    ['label' => 'Pre Tests', 'icon' => 'file-code-o', 'url' => ['/pre-tests']],
+                    ['label' => 'Drag Tests', 'icon' => 'file-code-o', 'url' => ['/drag-tests']],
                 ],
             ]
         ) ?>
