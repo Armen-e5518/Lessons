@@ -59,22 +59,28 @@ class TestsQuestion extends \yii\db\ActiveRecord
 
     public static function SaveTestsQuestion($id, $data)
     {
-        foreach ($data as $item) {
-            $model = new self();
-            $model->pre_test_id = $id;
-            $model->question = $item['question'];
-            $model->answer_1 = $item['answer_1'];
-            $model->answer_2 = $item['answer_2'];
-            $model->answer_3 = $item['answer_3'];
-            $model->answer_4 = $item['answer_4'];
-            $model->right_answers = Helper::GetRightAnswers($item);
-            $model->save();
+        self::deleteAll(['pre_test_id' => $id]);
+        if (!empty($data['test'])) {
+            foreach ($data as $item) {
+                if (!empty($item['question'])) {
+                    $model = new self();
+                    $model->pre_test_id = $id;
+                    $model->question = $item['question'];
+                    $model->answer_1 = $item['answer_1'];
+                    $model->answer_2 = $item['answer_2'];
+                    $model->answer_3 = $item['answer_3'];
+                    $model->answer_4 = $item['answer_4'];
+                    $model->right_answers = Helper::GetRightAnswers($item);
+                    $model->save();
+                }
+            }
         }
+        return true;
     }
 
     public static function GetTestsQuestionByTestId($id)
     {
-        return self::find()->where(['pre_test_id'=> $id])->asArray()->all();
+        return self::find()->where(['pre_test_id' => $id])->asArray()->all();
     }
 
 }

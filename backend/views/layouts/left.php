@@ -17,6 +17,7 @@
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Pre Tests', 'icon' => 'file-code-o', 'url' => ['/pre-tests']],
                     ['label' => 'Drag Tests', 'icon' => 'file-code-o', 'url' => ['/drag-tests']],
+                    ['label' => 'Choose Tests', 'icon' => 'file-code-o', 'url' => ['/choose-tests']],
                 ],
             ]
         ) ?>

@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use backend\components\File;
 use Yii;
 
 /**
@@ -33,7 +34,7 @@ class DragLessons extends \yii\db\ActiveRecord
         return [
             [['drag_test_id', 'status'], 'integer'],
             [['text'], 'string'],
-            [['img', 'color', 'title', ], 'string', 'max' => 255],
+            [['img', 'color', 'title',], 'string', 'max' => 255],
         ];
     }
 
@@ -51,5 +52,35 @@ class DragLessons extends \yii\db\ActiveRecord
             'text' => 'Text',
             'status' => 'Status',
         ];
+    }
+
+    public static function SaveLesson($id, $lessons, $file)
+    {
+        self::deleteAll(['drag_test_id' => $id]);
+        if (!empty($lessons['test'])) {
+            foreach ($lessons['test'] as $k => $item) {
+                if (!empty($item['title'])) {
+                    $file_n = File::Uploads($file, $k);
+                    $img = empty($item['img']) ? null : $item['img'];
+                    $model = new self();
+                    $model->color = $item['color'];
+                    $model->title = $item['title'];
+                    $model->text = $item['text'];
+                    $model->status = empty($item['status']) ? 0 : 1;
+                    $model->drag_test_id = $id;
+                    $model->img = $file_n ? $file_n : $img;
+                    if (!$model->save()) {
+                        print_r($model->getErrors());
+                        exit;
+                    };
+                }
+            }
+        }
+        return true;
+    }
+
+    public static function GetDragLessonsById($id)
+    {
+        return self::find()->where(['drag_test_id' => $id])->asArray()->all();
     }
 }

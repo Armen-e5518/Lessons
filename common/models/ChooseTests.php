@@ -5,20 +5,20 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "pre_tests".
+ * This is the model class for table "choose_tests".
  *
  * @property int $id
- * @property string $pop_text
+ * @property string $text_pop
  * @property string $title
  */
-class PreTests extends \yii\db\ActiveRecord
+class ChooseTests extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'pre_tests';
+        return 'choose_tests';
     }
 
     /**
@@ -27,8 +27,7 @@ class PreTests extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pop_text'], 'string'],
-            [['title'], 'string', 'max' => 255],
+            [['text_pop', 'title'], 'string', 'max' => 255],
         ];
     }
 
@@ -39,7 +38,7 @@ class PreTests extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'pop_text' => 'Pop Text',
+            'text_pop' => 'Text Pop',
             'title' => 'Title',
         ];
     }

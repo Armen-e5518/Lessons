@@ -2,20 +2,18 @@
 
 namespace backend\controllers;
 
-use backend\components\File;
-use backend\components\Helper;
-use common\models\DragLessons;
+use common\models\ChooseItems;
 use Yii;
-use common\models\DragTests;
-use common\models\search\DragTestsSearch;
+use common\models\ChooseTests;
+use common\models\search\ChooseTestsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DragTestsController implements the CRUD actions for DragTests model.
+ * ChooseTestsController implements the CRUD actions for ChooseTests model.
  */
-class DragTestsController extends Controller
+class ChooseTestsController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -33,12 +31,12 @@ class DragTestsController extends Controller
     }
 
     /**
-     * Lists all DragTests models.
+     * Lists all ChooseTests models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new DragTestsSearch();
+        $searchModel = new ChooseTestsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +46,7 @@ class DragTestsController extends Controller
     }
 
     /**
-     * Displays a single DragTests model.
+     * Displays a single ChooseTests model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,15 +59,15 @@ class DragTestsController extends Controller
     }
 
     /**
-     * Creates a new DragTests model.
+     * Creates a new ChooseTests model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new DragTests();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $model = new ChooseTests();
+        $post = Yii::$app->request->post();
+        if ($model->load($post) && $model->save()) {
             return $this->redirect(['update', 'id' => $model->id]);
         }
 
@@ -79,7 +77,7 @@ class DragTestsController extends Controller
     }
 
     /**
-     * Updates an existing DragTests model.
+     * Updates an existing ChooseTests model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -88,21 +86,21 @@ class DragTestsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
         $post = Yii::$app->request->post();
         if ($model->load($post) && $model->save()) {
-            DragLessons::SaveLesson($model->id,$post,$_FILES);
+            ChooseItems::SaveItems($model->id, $post);
             Yii::$app->session->setFlash('success', 'Saved');
+            return $this->redirect(['update', 'id' => $model->id]);
         }
 
         return $this->render('update', [
-            'lessons' => DragLessons::GetDragLessonsById($id),
             'model' => $model,
+            'items' => ChooseItems::GetItemsById($id),
         ]);
     }
 
     /**
-     * Deletes an existing DragTests model.
+     * Deletes an existing ChooseTests model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -116,15 +114,15 @@ class DragTestsController extends Controller
     }
 
     /**
-     * Finds the DragTests model based on its primary key value.
+     * Finds the ChooseTests model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return DragTests the loaded model
+     * @return ChooseTests the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = DragTests::findOne($id)) !== null) {
+        if (($model = ChooseTests::findOne($id)) !== null) {
             return $model;
         }
 
