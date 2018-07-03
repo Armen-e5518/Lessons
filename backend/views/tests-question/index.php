@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\search\TestsQuestiontsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tests Questions';
+$this->title = 'Tests Question';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tests-question-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Tests Question', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Test Question', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -28,8 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'pre_test_id',
             'question',
-            'answer_1',
-            'answer_2',
+//            'answer_1',
+//            'answer_2',
             //'answer_3',
             //'answer_4',
             //'right_answers',

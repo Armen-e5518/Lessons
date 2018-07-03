@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use Yii;
@@ -16,12 +17,15 @@ use yii\web\IdentityInterface;
  * @property string $password_reset_token
  * @property string $email
  * @property string $auth_key
- * @property string first_name
- * @property string last_name
- * @property string sex
- * @property string region
- * @property string city
- * @property string community
+ * @property string $first_name
+ * @property string $last_name
+ * @property integer $sex
+ * @property integer $region
+ * @property integer $city
+ * @property integer $community
+ * @property integer $grade
+ * @property integer $current_grade
+ * @property integer $school
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
@@ -59,7 +63,22 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            [['first_name', 'last_name', 'sex', 'region', 'city', 'community','school','grade'], 'required'],
         ];
+    }
+
+    public static function SaveUserData($data)
+    {
+        $user = self::findOne(Yii::$app->user->getId());
+        $user->first_name = $data['first_name'];
+        $user->last_name = $data['last_name'];
+        $user->sex = $data['sex'];
+        $user->region = $data['region'];
+        $user->city = $data['city'];
+        $user->community = $data['community'];
+        $user->school = $data['school'];
+        $user->grade = $data['grade'];
+        return $user->save();
     }
 
     /**

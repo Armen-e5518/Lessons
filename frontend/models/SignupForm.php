@@ -20,6 +20,8 @@ class SignupForm extends Model
     public $sex;
     public $region;
     public $community;
+    public $school;
+    public $grade;
 
 
     /**
@@ -40,8 +42,8 @@ class SignupForm extends Model
             ['password_com', 'required'],
             ['password_com', 'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
 
-            [['first_name', 'last_name', 'sex', 'region', 'city', 'community'], 'required'],
-            [['sex', 'region', 'city', 'community'], 'integer'],
+            [['first_name', 'last_name', 'sex', 'region', 'city', 'community','school','grade'], 'required'],
+            [['sex', 'region', 'city', 'community','school','grade'], 'integer'],
             [['first_name', 'last_name'], 'string', 'max' => 255],
         ];
     }
@@ -65,7 +67,8 @@ class SignupForm extends Model
         $user->region = $this->region;
         $user->city = $this->city;
         $user->community = $this->community;
-//        $user->email = $this->email;
+        $user->school = $this->school;
+        $user->grade = $this->grade;
 //        $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();

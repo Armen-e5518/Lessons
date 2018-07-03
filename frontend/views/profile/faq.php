@@ -11,6 +11,8 @@ $this->registerCssFile('https://use.fontawesome.com/releases/v5.0.13/css/all.css
 $this->title = '“Առողջ Ապրելակերպ”';
 $this->params['class'] = 'inner-page';
 $this->params['faq'] = 'true';
+
+
 ?>
 <section class="breadcrumb">
     <div class="container align-text">

@@ -42,6 +42,9 @@ class ChooseTests extends \yii\db\ActiveRecord
             'title' => 'Title',
         ];
     }
-
+    public static function GetAll()
+    {
+        return self::find()->asArray()->all();
+    }
 
 }

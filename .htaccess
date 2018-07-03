@@ -32,7 +32,7 @@ AddDefaultCharset utf-8
    RewriteRule \.(htaccess|htpasswd|svn|git) - [F]
 </ifmodule>
 
-# Use PHPstable as default
+
 AddHandler application/x-httpd-php-stable .php
 <IfModule mod_suphp.c>
     suPHP_ConfigPath /opt/phpstable/lib

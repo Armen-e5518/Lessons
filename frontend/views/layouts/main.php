@@ -9,6 +9,12 @@ use frontend\assets\AppAsset;
 
 
 AppAsset::register($this);
+
+$header_img = !empty($this->params['header_img']) ?     $this->params['header_img'] : '/main/assets/images/logo.png';
+$footer_img_1 = !empty($this->params['footer_img_1']) ? $this->params['footer_img_1'] : '/main/assets/images/UNFPA-logo.png';
+$footer_img_2 = !empty($this->params['footer_img_2']) ? $this->params['footer_img_2'] : '/main/assets/images/UN-logo.png';
+
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -28,7 +34,7 @@ AppAsset::register($this);
     <header>
         <div class="container">
             <div class="logo">
-                <a href="/"><img src="/main/assets/images/logo.png" alt="Առողջ Ապրելակերպ" title="Առողջ Ապրելակերպ"></a>
+                <a href="/"><img src="<?= $header_img ?>" alt="Առողջ Ապրելակերպ" title="Առողջ Ապրելակերպ"></a>
                 <h1><a href="/">Առողջ <br>Ապրելակերպ</a></h1>
             </div>
             <label>
@@ -56,15 +62,15 @@ AppAsset::register($this);
         <div class="container">
             <span class="copyright">&copy; 2018 “Առողջ Ապրելակերպ” առցանց դասընթաց</span>
             <span class="partners">
-				<img src="/main/assets/images/UNFPA-logo.png" alt="UNFPA" title="UNFPA">
-				<img src="/main/assets/images/UN-logo.png" alt="UN" title="UN">
+				<img src="<?= $footer_img_1 ?>" alt="UNFPA" title="UNFPA">
+				<img src="<?= $footer_img_2 ?>" alt="UN" title="UN">
             </span>
         </div>
     </footer>
 </div>
 <?php if (!empty($this->params['slider'])): ?>
-    <a href="<?=$this->params['slider_1']?>" class="slide-left"><i class="fas fa-angle-left"></i></a>
-    <a href="<?=$this->params['slider_2']?>" class="slide-right"><i class="fas fa-angle-right"></i></a>
+    <a href="<?= $this->params['slider_1'] ?>" class="slide-left"><i class="fas fa-angle-left"></i></a>
+    <a href="<?= $this->params['slider_2'] ?>" class="slide-right"><i class="fas fa-angle-right"></i></a>
 <?php endif; ?>
 <?php $this->endBody() ?>
 </body>

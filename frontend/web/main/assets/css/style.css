@@ -766,7 +766,7 @@ a[class *= "slide-"] i {
     height: 11px;
     background: #3ec341;
     position: relative;
-    top: -1px;
+    top: -4px;
 }
 
 .radio-label input[type="radio"]:checked ~ span:after,

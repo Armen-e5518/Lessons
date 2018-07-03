@@ -11,6 +11,9 @@ $this->registerCssFile('https://use.fontawesome.com/releases/v5.0.13/css/all.css
 $this->title = '“Առողջ Ապրելակերպ”';
 $this->params['class'] = 'inner-page';
 $this->params['faq'] = 'true';
+$this->params['header_img'] = '/main/assets/images/logo-colorful.png';
+$this->params['footer_img_1'] = '/main/assets/images/UNFPA-logo-colorful.png';
+$this->params['footer_img_2'] = '/main/assets/images/UN-logo-colorful.png';
 ?>
 <section class="breadcrumb">
     <div class="container align-text">

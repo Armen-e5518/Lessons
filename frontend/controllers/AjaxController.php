@@ -25,19 +25,34 @@ class AjaxController extends Controller
         if (Yii::$app->request->isAjax) {
             \Yii::$app->response->format = Response::FORMAT_JSON;
             $post = Yii::$app->request->post();
-            if (!empty($post)) {
+            if (!empty($post['id'])) {
                 return Data::GetCityByRegion()[$post['id']];
             }
         }
+        return null;
     }
+
     public function actionGetCommunity()
     {
         if (Yii::$app->request->isAjax) {
             \Yii::$app->response->format = Response::FORMAT_JSON;
             $post = Yii::$app->request->post();
-            if (!empty($post)) {
-                return Data::GetCommunity()[$post['id']];
+            if (!empty($post['region_id'] && !empty($post['city_id']))) {
+                return Data::GetCommunity()[$post['region_id']][$post['city_id']];
             }
         }
+        return null;
+    }
+
+    public function actionGetSchool()
+    {
+        if (Yii::$app->request->isAjax) {
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            $post = Yii::$app->request->post();
+            if (!empty($post['region_id'] && !empty($post['city_id']) && !empty($post['community_id']))) {
+                return Data::GetSchool()[$post['region_id']][$post['city_id']][$post['community_id']];
+            }
+        }
+        return null;
     }
 }

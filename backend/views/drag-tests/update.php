@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\DragTests */
 
-$this->title = 'Update Drag Tests: ' . $model->title;
+$this->title = 'Update Drag Tests ';
 $this->params['breadcrumbs'][] = ['label' => 'Drag Tests', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

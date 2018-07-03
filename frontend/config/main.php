@@ -11,7 +11,15 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+
     'components' => [
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js'=>[]
+                ],
+            ],
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
             'baseUrl' => '',

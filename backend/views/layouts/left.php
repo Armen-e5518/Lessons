@@ -14,10 +14,13 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-                    ['label' => 'Pre Tests', 'icon' => 'file-code-o', 'url' => ['/pre-tests']],
+//                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
+                    ['label' => 'Primary Tests', 'icon' => 'file-code-o', 'url' => ['/pre-tests']],
                     ['label' => 'Drag Tests', 'icon' => 'file-code-o', 'url' => ['/drag-tests']],
                     ['label' => 'Choose Tests', 'icon' => 'file-code-o', 'url' => ['/choose-tests']],
+                    ['label' => 'Video Lessons', 'icon' => 'file-code-o', 'url' => ['/video-lesson']],
+                    ['label' => 'Lessons', 'icon' => 'file-code-o', 'url' => ['/lessons']],
+                    ['label' => 'Lessons Group', 'icon' => 'file-code-o', 'url' => ['/lessons-group']],
                 ],
             ]
         ) ?>

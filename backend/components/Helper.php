@@ -39,4 +39,20 @@ class Helper
         }
         return null;
     }
+
+    public static function GetVideoId($string)
+    {
+        parse_str(parse_url($string, PHP_URL_QUERY), $my_array_of_vars);
+        return $my_array_of_vars['v'];
+    }
+
+    public static function Sorting($inventory)
+    {
+        $price = array();
+        foreach ($inventory as $key => $row) {
+            $price[$key] = $row['sorting'];
+        }
+        array_multisort($price, SORT_DESC, $inventory);
+        return $price;
+    }
 }

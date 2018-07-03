@@ -90,6 +90,8 @@ class PreTestsController extends Controller
 
         $post = Yii::$app->request->post();
         if ($model->load($post) && $model->save()) {
+//            Helper::out($post);
+//            exit;
             TestsQuestion::SaveTestsQuestion($model->id, $post);
             return $this->redirect(['index']);
         }

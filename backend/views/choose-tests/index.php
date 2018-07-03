@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Choose Tests', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Choose Test', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'text_pop',
+//            'text_pop',
             'title',
 
             ['class' => 'yii\grid\ActionColumn'],

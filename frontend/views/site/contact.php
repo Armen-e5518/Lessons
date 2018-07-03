@@ -18,6 +18,9 @@ $this->registerCssFile('https://use.fontawesome.com/releases/v5.0.13/css/all.css
 $this->title = '“Առողջ Ապրելակերպ”';
 $this->params['class'] = 'inner-page';
 $this->params['contact'] = 'true';
+$this->params['header_img'] = '/main/assets/images/logo-colorful.png';
+$this->params['footer_img_1'] = '/main/assets/images/UNFPA-logo-colorful.png';
+$this->params['footer_img_2'] = '/main/assets/images/UN-logo-colorful.png';
 ?>
 
 <section class="breadcrumb">
@@ -43,7 +46,8 @@ $this->params['contact'] = 'true';
                 </ul>
             </div>
             <div class="contact-r">
-                <?php $form = ActiveForm::begin(['id' => 'contact-form', 'class' => 'form']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'contact-form', 'class' => 'form','enableClientScript' => false,
+                ]); ?>
                 <div class="form-top">
                     <div class="form-fld">
                         <?= $form->field($model, 'name')->textInput(['autofocus' => true, 'class' => ''])->label('Անուն') ?>

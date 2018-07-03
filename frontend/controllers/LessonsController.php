@@ -1,6 +1,9 @@
 <?php
 namespace frontend\controllers;
 
+use backend\components\Helper;
+use common\models\LessonGropuRel;
+use common\models\LessonsGroup;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -35,7 +38,10 @@ class LessonsController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $LessonsGroup = LessonsGroup::CurrentId();
+        return $this->render('index',[
+            'lessons_group' =>LessonGropuRel::GetAllById($LessonsGroup['id'])
+        ]);
     }
 
 

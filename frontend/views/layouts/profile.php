@@ -79,11 +79,31 @@ AppAsset::register($this);
         <div class="container">
             <span class="copyright">&copy; 2018 “Առողջ Ապրելակերպ” առցանց դասընթաց</span>
             <span class="partners">
-						<img src="/main/assets/images/UNFPA-logo-colorful.png" alt="UNFPA" title="UNFPA">
-						<img src="/main/assets/images/UN-logo-colorful.png" alt="UN" title="UN">
-					</span>
+				<img src="/main/assets/images/UNFPA-logo-colorful.png" alt="UNFPA" title="UNFPA">
+				<img src="/main/assets/images/UN-logo-colorful.png" alt="UN" title="UN">
+            </span>
         </div>
     </footer>
+</div>
+
+<div class="lesson-popup-layer">
+    <div class="lesson-popup">
+        <div class="lesson-popup-body">
+            <div class="lesson-popup-body-inner">
+                <a href="#" class="lesson-popup-close"><i class="fas fa-times"></i></a>
+                <p>
+                    <strong id="pop_title" class="blue-txt" style="display: none">
+                        <i style="display:none;" class="fas fa-check-circle leading-symbol"></i>
+                        <span></span>
+                    </strong>
+                    <span id="pop_text"></span>
+                </p>
+            </div>
+            <a href="/profile/choose" style="display:none;" id="pop_button" class="btn">Վերադասավորել</a>
+        </div>
+        <div class="user-avatar-large">
+            <img src="/main/assets/images/users/user-avatar-large.png" alt="Կարինե" title="Կարինե"></div>
+    </div>
 </div>
 <script>
     function myFunction() {

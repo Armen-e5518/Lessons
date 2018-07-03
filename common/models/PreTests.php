@@ -44,5 +44,9 @@ class PreTests extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function GetAll()
+    {
+        return self::find()->asArray()->all();
+    }
 
 }

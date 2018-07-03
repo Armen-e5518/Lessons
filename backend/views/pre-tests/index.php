@@ -7,12 +7,12 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\search\PreTestsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pre Tests';
+$this->title = 'Primary Tests';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pre-tests-index">
     <p>
-        <?= Html::a('Create Pre Tests', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Primary Test', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'pop_text:ntext',
+//            'pop_text:ntext',
             'title',
 
             ['class' => 'yii\grid\ActionColumn'],

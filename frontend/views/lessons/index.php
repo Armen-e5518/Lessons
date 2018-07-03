@@ -11,7 +11,7 @@ $this->title = '“Առողջ Ապրելակերպ” առցանց դասընթ�
 $this->params['class'] = 'inner-page';
 $this->params['lessons'] = 'true';
 ?>
-<section class="breadcrumb_m">
+<section class="breadcrumb">
     <div class="container">
         <span></span>
         <span class="page-title"><strong>Առողջ ապրելակերպ դասընթաց</strong> (8-րդ դասարանների համար)</span>
@@ -22,15 +22,15 @@ $this->params['lessons'] = 'true';
     <div class="container">
         <ul>
             <li class="passed-lesson">
-                <a href="#"><i class="fas fa-check"></i><strong>Նախաթեստ</strong></a>
+                <a href="/"><i class="fas fa-check"></i><strong>Նախաթեստ</strong></a>
                 <span class="score">Միավորներ՝ 40 / 80</span>
             </li>
             <li class="passed-lesson">
-                <a href="test1.html"><i class="fas fa-check"></i><strong>դաս 1 - առողջության գործոնները</strong></a>
+                <a href="/profile/drag"><i class="fas fa-check"></i><strong>դաս 1 - առողջության գործոնները</strong></a>
                 <span class="score">Միավորներ՝ 90 / 100</span>
             </li>
             <li class="current-lesson">
-                <a href="test2.html"><i></i><strong>դաս 2 - սեռային կամ գենդերային դերեր</strong></a>
+                <a href="/profile/choose"><i></i><strong>դաս 2 - սեռային կամ գենդերային դերեր</strong></a>
             </li>
             <li class="upcoming-lesson">
                 <a href="#"><strong>դաս 3 - հասունացում</strong></a>

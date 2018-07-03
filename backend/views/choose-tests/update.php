@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\ChooseTests */
 
-$this->title = 'Update Choose Tests: ' . $model->title;
+$this->title = 'Update Choose Test ';
 $this->params['breadcrumbs'][] = ['label' => 'Choose Tests', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

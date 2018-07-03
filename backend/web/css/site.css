@@ -101,9 +101,9 @@ a.desc:after {
     border: none;
 }
 
-@media(max-width:767px) {
+@media (max-width: 767px) {
     .nav li > form > button.logout {
-        display:block;
+        display: block;
         text-align: left;
         width: 100%;
         padding: 10px 15px;
@@ -119,8 +119,46 @@ a.desc:after {
     outline: none;
 }
 
-#questions .delete{
+#questions .delete {
     color: red;
     float: right;
     cursor: pointer;
+}
+
+.m_lessons .item {
+    padding: 7px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+
+    position: relative;
+    margin: 8px;
+}
+
+.l_lesson .item{
+    cursor: copy;
+}
+.m_lessons .item .fa-close {
+    color: #222d32;
+    position: absolute;
+    right: 0;
+    top: 7px;
+    cursor: pointer;
+}
+
+.m_lessons .l_lesson .fa-close {
+    display: none;
+}
+
+.m_lessons .drag,.m_lessons .pre {
+    background-color: #3b8dbc;
+}
+
+.m_lessons .choose, .m_lessons .glob  {
+    background-color: #f39c12;
+}
+
+.m_lessons .video {
+    background-color: #03c0ef;
 }

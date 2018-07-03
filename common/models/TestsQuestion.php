@@ -61,7 +61,7 @@ class TestsQuestion extends \yii\db\ActiveRecord
     {
         self::deleteAll(['pre_test_id' => $id]);
         if (!empty($data['test'])) {
-            foreach ($data as $item) {
+            foreach ($data['test'] as $item) {
                 if (!empty($item['question'])) {
                     $model = new self();
                     $model->pre_test_id = $id;

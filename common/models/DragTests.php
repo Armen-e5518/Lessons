@@ -43,4 +43,9 @@ class DragTests extends \yii\db\ActiveRecord
             'title' => 'Title',
         ];
     }
+
+    public static function GetAll()
+    {
+        return self::find()->asArray()->all();
+    }
 }
