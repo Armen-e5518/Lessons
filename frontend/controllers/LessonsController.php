@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use backend\components\Helper;
 use common\models\LessonGropuRel;
 use common\models\LessonsGroup;
+use common\models\UserTests;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -39,8 +40,12 @@ class LessonsController extends Controller
     public function actionIndex()
     {
         $LessonsGroup = LessonsGroup::CurrentId();
+        $user_tests_state = UserTests::GetCurrentUserTestsState();
+        Helper::out(LessonGropuRel::GetAllById($LessonsGroup['id']));
+        Helper::out($user_tests_state);
         return $this->render('index',[
-            'lessons_group' =>LessonGropuRel::GetAllById($LessonsGroup['id'])
+            'lessons_group' =>LessonGropuRel::GetAllById($LessonsGroup['id']),
+            'lessons_global' =>$LessonsGroup,
         ]);
     }
 

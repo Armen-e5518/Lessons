@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use backend\components\Data;
+use common\models\ChooseTestRes;
 use Yii;
 use yii\web\Controller;
 use \yii\web\Response;
@@ -55,4 +56,17 @@ class AjaxController extends Controller
         }
         return null;
     }
+
+    public function actionSaveChooseTest()
+    {
+        if (Yii::$app->request->isAjax) {
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            $post = Yii::$app->request->post();
+            if (!empty($post)) {
+                return ChooseTestRes::SaveTest($post);
+            }
+        }
+        return null;
+    }
+
 }

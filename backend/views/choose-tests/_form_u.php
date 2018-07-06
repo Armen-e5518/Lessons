@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
 $this->registerJsFile('/admin/js/jquery.js');
 $this->registerJsFile('/admin/js/choose.js');
 /* @var $this yii\web\View */
@@ -21,9 +22,9 @@ $this->registerJsFile('/admin/js/choose.js');
         <div class="col-md-6">
             <div class="" id="choose">
                 <?php if (!empty($items)): ?>
-                    <?php foreach ($items as $kay => $item) : ?>
-                        <div class="item">
-                            <H4>Items 1 </H4>
+                    <?php foreach ($items as $kay => $item) :++$kay ?>
+                        <div class="item index" data-index="<?= $kay ?>">
+                            <H4>Items <?= $kay ?> </H4>
                             <a href="#" class="delete" style="color: red">Delete</a>
                             <div class="row">
                                 <div class="col-md-8">
@@ -35,10 +36,12 @@ $this->registerJsFile('/admin/js/choose.js');
                                            name=test[index_<?= $kay ?>][status]>
                                     <lable>Female</lable>
                                     <input value="2" type="radio"
-                                           <?= $item['status'] == 2 ? 'checked' : '' ?>name=test[index_<?= $kay ?>][status]>
+                                        <?= $item['status'] == 2 ? 'checked' : '' ?>
+                                           name=test[index_<?= $kay ?>][status]>
                                     <lable>Both</lable>
                                     <input value="3" type="radio"
-                                           <?= $item['status'] == 3 ? 'checked' : '' ?>name=test[index_<?= $kay ?>][status]>
+                                        <?= $item['status'] == 3 ? 'checked' : '' ?>
+                                           name=test[index_<?= $kay ?>][status]>
                                 </div>
                             </div>
                         </div>

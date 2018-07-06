@@ -1,0 +1,80 @@
+$(document).ready(function () {
+    $('#pop_text').html(__pop_text);
+    $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+    $(".user-avatar-small").click(function () {
+        $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+    });
+    $(".lesson-popup-close").click(function () {
+        $(".lesson-popup-layer").css({"opacity": "0", "z-index": "-1"});
+    });
+
+    var index = 0;
+    var Choose_data = __Data[index];
+
+    $('.gender-power-btn span').html(Choose_data.title);
+    $('.gender-power-btn .fa-arrow-left').click(function () {
+        $('.male-responsibility').append('<span class="btn draggable" data-id="' + Choose_data.id + '">' + Choose_data.title + '</span>');
+        index++;
+        if (__Data[index]) {
+            Choose_data = __Data[index];
+            $('.gender-power-btn span').html(Choose_data.title);
+
+        } else {
+            $('#pop_button').show().html('Հաջորդ դասը').attr('href', '/lessons');
+            $('.lesson-popup-close').hide();
+            $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+            SaveUserTestData()
+        }
+
+    });
+    $('.gender-power-btn .fa-arrow-right').click(function () {
+        $('.female-responsibility').append('<span class="btn draggable" data-id="' + Choose_data.id + '">' + Choose_data.title + '</span>');
+        index++;
+        if (__Data[index]) {
+            Choose_data = __Data[index];
+            $('.gender-power-btn span').html(Choose_data.title);
+
+        } else {
+            $('#pop_button').show().html('Հաջորդ դասը').attr('href', '/lessons');
+            $('.lesson-popup-close').hide();
+            $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+            SaveUserTestData()
+        }
+    })
+});
+
+function SaveUserTestData() {
+    var data = {};
+    data.choose_test_id = __choose_test_id;
+    data.male = GetMaleResponsibility();
+    data.female = GetMaleResponsibility();
+    data.time = $('#timer').html();
+    $.ajax({
+        type: "POST",
+        url: "/ajax/save-choose-test", //actionGetCommunity
+        data: data,
+        success: function (res) {
+            if (res) {
+                $.each(res, function (index, value) {
+                    $('#community').append('<option value="' + index + '">' + value + '</option>')
+                });
+            }
+        }
+    });
+}
+
+function GetMaleResponsibility() {
+    var a = [];
+    $('.male-responsibility .draggable').each(function () {
+        a.push($(this).attr('data-id'))
+    })
+    return a;
+}
+
+function GetFemaleResponsibility() {
+    var a = [];
+    $('.female-responsibility .draggable').each(function () {
+        a.push($(this).attr('data-id'))
+    })
+    return a;
+}

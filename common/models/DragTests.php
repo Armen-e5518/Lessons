@@ -48,4 +48,9 @@ class DragTests extends \yii\db\ActiveRecord
     {
         return self::find()->asArray()->all();
     }
+
+    public static function GetById($id)
+    {
+        return self::findOne($id);
+    }
 }

@@ -55,4 +55,30 @@ class Helper
         array_multisort($price, SORT_DESC, $inventory);
         return $price;
     }
+
+    public static function GetIndex($lessons, $current_lesson)
+    {
+        if (!empty($lessons) && !empty($current_lesson)) {
+            foreach ($lessons as $k => $l) {
+                if ($l['id'] == $current_lesson['id']) {
+                    return $k + 1;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public static function seconds_from_time($time)
+    {
+        list($h, $m, $s) = explode(':', $time);
+        return ($h * 3600) + ($m * 60) + $s;
+    }
+
+    public static function time_from_seconds($seconds)
+    {
+        $h = floor($seconds / 3600);
+        $m = floor(($seconds % 3600) / 60);
+        $s = $seconds - ($h * 3600) - ($m * 60);
+        return sprintf('%02d:%02d:%02d', $h, $m, $s);
+    }
 }

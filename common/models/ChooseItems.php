@@ -42,6 +42,7 @@ class ChooseItems extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'status' => 'Status',
+            'choose_id' => 'choose_id',
         ];
     }
 
@@ -69,4 +70,8 @@ class ChooseItems extends \yii\db\ActiveRecord
     {
         return self::find()->where(['choose_id' => $id])->asArray()->all();
     }
+
+
 }
+
+

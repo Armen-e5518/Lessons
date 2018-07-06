@@ -14,13 +14,27 @@ $this->params['lessons'] = 'true';
 <section class="breadcrumb">
     <div class="container">
         <span></span>
-        <span class="page-title"><strong>Առողջ ապրելակերպ դասընթաց</strong> (8-րդ դասարանների համար)</span>
+        <span class="page-title"><strong><?= $lessons_global['title'] ?></strong> (<?= $lessons_global['grade'] ?>
+            -րդ դասարան)</span>
         <div class="passed-step">Ընթացք՝ <span>2 / 10</span></div>
     </div>
 </section>
 <section class="lessons-list">
     <div class="container">
         <ul>
+            <?php if (!empty($lessons_group)) : ?>
+                <?php foreach ($lessons_group as $item) :
+                    $class = 'passed-lesson';
+                    $type = $item['type'] == 1 ? 'primary' : '';
+                    $type = $item['type'] == 2 ? 'global' : $type;
+                    ?>
+                    <li class="passed-lesson">
+                        <a href="/test/<?= $type ?>?id=<?= $item['lesson_id'] ?>"><i
+                                    class="fas fa-check"></i><strong><?= $item['title'] ?></strong></a>
+                        <span class="score">Միավորներ՝ 40 / 80</span>
+                    </li>
+                <?php endforeach; ?>
+            <?php endif; ?>
             <li class="passed-lesson">
                 <a href="/"><i class="fas fa-check"></i><strong>Նախաթեստ</strong></a>
                 <span class="score">Միավորներ՝ 40 / 80</span>

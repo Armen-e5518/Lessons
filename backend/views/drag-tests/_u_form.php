@@ -26,9 +26,9 @@ $this->registerJsFile('/admin/js/drag_test.js');
         <div class="col-md-6">
             <div class="" id="drag">
                 <?php if (!empty($lessons)): ?>
-                    <?php foreach ($lessons as $kay => $item) : ?>
-                        <div class="item">
-                            <H4>Items 1 </H4>
+                    <?php foreach ($lessons as $kay => $item) : ++$kay ?>
+                        <div class="item index" data-index="<?= $kay ?>">
+                            <H4>Items <?= $kay ?> </H4>
                             <a href="#" class="delete" style="color: red">Delete</a>
                             <div class="row">
                                 <div class="col-md-6">
@@ -50,8 +50,8 @@ $this->registerJsFile('/admin/js/drag_test.js');
                                     <input class="form-control" value="<?= $item['title'] ?>" type="text"
                                            name=test[index_<?= $kay ?>][title]>
                                     <lable>Text</lable>
-                                    <input class="form-control" value="<?= $item['text'] ?>" type="text"
-                                           name=test[index_<?= $kay ?>][text]>
+                                    <textarea class="form-control" value="<?= $item['text'] ?>" type="text"
+                                              name=test[index_<?= $kay ?>][text]><?= $item['text'] ?></textarea>
                                     <lable>Right</lable>
                                     <input class="" type="checkbox" <?= !empty($item['status']) ? 'checked' : '' ?>
                                            name=test[index_<?= $kay ?>][status]>
@@ -74,7 +74,7 @@ $this->registerJsFile('/admin/js/drag_test.js');
                                 <lable>Title</lable>
                                 <input class="form-control" type="text" name=test[index_1][title]>
                                 <lable>Text</lable>
-                                <input class="form-control" type="text" name=test[index_1][text]>
+                                <textarea class="form-control" type="text" name=test[index_1][text]></textarea>
                                 <lable>Right</lable>
                                 <input class="" type="checkbox" name=test[index_1][status]>
                             </div>

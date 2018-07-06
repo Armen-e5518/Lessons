@@ -99,10 +99,12 @@ AppAsset::register($this);
                     <span id="pop_text"></span>
                 </p>
             </div>
-            <a href="/profile/choose" style="display:none;" id="pop_button" class="btn">Վերադասավորել</a>
+            <a href="" style="display:none;" id="pop_button" class="btn">Վերադասավորել</a>
         </div>
         <div class="user-avatar-large">
-            <img src="/main/assets/images/users/user-avatar-large.png" alt="Կարինե" title="Կարինե"></div>
+            <img src="/main/assets/images/users/user-avatar-large.png"
+                 alt="<?= Yii::$app->user->identity->first_name ?>"
+                 title="<?= Yii::$app->user->identity->first_name ?>"></div>
     </div>
 </div>
 <script>
