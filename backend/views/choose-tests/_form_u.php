@@ -18,6 +18,7 @@ $this->registerJsFile('/admin/js/choose.js');
         <div class="col-md-6">
             <?= $form->field($model, 'text_pop')->textarea(['row' => 6]) ?>
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'status')->dropDownList([0 => 'male female', 1 => 'male female both']) ?>
         </div>
         <div class="col-md-6">
             <div class="" id="choose">

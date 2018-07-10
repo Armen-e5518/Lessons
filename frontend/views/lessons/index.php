@@ -1,5 +1,7 @@
 <?php
 
+use common\models\UserTestsState;
+
 /* @var $this yii\web\View */
 
 $this->registerCssFile('/main/assets/css/bootstrap.min.css');
@@ -10,66 +12,50 @@ $this->registerCssFile('https://use.fontawesome.com/releases/v5.0.13/css/all.css
 $this->title = '“Առողջ Ապրելակերպ” առցանց դասընթա';
 $this->params['class'] = 'inner-page';
 $this->params['lessons'] = 'true';
+$flag = true;
 ?>
 <section class="breadcrumb">
     <div class="container">
         <span></span>
         <span class="page-title"><strong><?= $lessons_global['title'] ?></strong> (<?= $lessons_global['grade'] ?>
             -րդ դասարան)</span>
-        <div class="passed-step">Ընթացք՝ <span>2 / 10</span></div>
+        <div class="passed-step">Ընթացք՝ <span><?= $done_count ?> / <?= count($lessons_group) ?></span></div>
     </div>
 </section>
 <section class="lessons-list">
     <div class="container">
         <ul>
             <?php if (!empty($lessons_group)) : ?>
-                <?php foreach ($lessons_group as $item) :
-                    $class = 'passed-lesson';
-                    $type = $item['type'] == 1 ? 'primary' : '';
-                    $type = $item['type'] == 2 ? 'global' : $type;
+                <?php foreach ($lessons_group as $k => $item) :
+
+                    if ($k == count($lessons_group) - 1 && $item['type'] == 1 && $class != 'upcoming-lesson') {
+                        $last_test = UserTestsState::GetSecondPreLesson($item['lesson_id']);
+                        if ($last_test['status'] == 0) {
+                            $href = "/test/primary?id={$item['lesson_id']}&l={$last_test['id']}";
+                            $class = 'current-lesson';
+                            $item['u_status'] = 0;
+                        }
+                    } else {
+                        $class = 'passed-lesson';
+                        if ($item['u_status'] == 0 || !$flag) {
+                            $class = $flag ? 'current-lesson' : 'upcoming-lesson';
+                            $flag = false;
+                        }
+                        $type = $item['type'] == 1 ? 'primary' : '';
+                        $type = $item['type'] == 2 ? 'global' : $type;
+                        $href = $class == 'current-lesson' ? "/test/{$type}?id={$item['lesson_id']}&l=0" : '#';
+                    }
                     ?>
-                    <li class="passed-lesson">
-                        <a href="/test/<?= $type ?>?id=<?= $item['lesson_id'] ?>"><i
+                    <li class="<?= $class ?>">
+                        <a href="<?= $href ?>"><i
                                     class="fas fa-check"></i><strong><?= $item['title'] ?></strong></a>
-                        <span class="score">Միավորներ՝ 40 / 80</span>
+                        <?php if (!empty($item['u_status'])): ?>
+                            <span class="score">Միավորներ՝ <?= $item['point'] ?> / 100</span>
+                        <?php endif; ?>
+
                     </li>
                 <?php endforeach; ?>
             <?php endif; ?>
-            <li class="passed-lesson">
-                <a href="/"><i class="fas fa-check"></i><strong>Նախաթեստ</strong></a>
-                <span class="score">Միավորներ՝ 40 / 80</span>
-            </li>
-            <li class="passed-lesson">
-                <a href="/profile/drag"><i class="fas fa-check"></i><strong>դաս 1 - առողջության գործոնները</strong></a>
-                <span class="score">Միավորներ՝ 90 / 100</span>
-            </li>
-            <li class="current-lesson">
-                <a href="/profile/choose"><i></i><strong>դաս 2 - սեռային կամ գենդերային դերեր</strong></a>
-            </li>
-            <li class="upcoming-lesson">
-                <a href="#"><strong>դաս 3 - հասունացում</strong></a>
-            </li>
-            <li class="upcoming-lesson">
-                <a href="#"><strong>դաս 4 - հիգիենան հասունացման շրջանում</strong></a>
-            </li>
-            <li class="upcoming-lesson">
-                <a href="#"><strong>դաս 5 - դժվար տարիք</strong></a>
-            </li>
-            <li class="upcoming-lesson">
-                <a href="#"><strong>դաս 6 - ի՞նչ է սերը</strong></a>
-            </li>
-            <li class="upcoming-lesson">
-                <a href="#"><strong>դաս 7 - ծնող լինելու արվեստը</strong></a>
-            </li>
-            <li class="upcoming-lesson">
-                <a href="#"><strong>դաս 8 - ապագա ծնողներ</strong></a>
-            </li>
-            <li class="upcoming-lesson">
-                <a href="#"><strong>դաս 9 - սեռավարակներ</strong></a>
-            </li>
-            <li class="upcoming-lesson">
-                <a href="#"><strong>դաս 10 - անխոհեմ սեռական վարքագծի հնարավոր հետեվանքները</strong></a>
-            </li>
         </ul>
     </div>
 </section>

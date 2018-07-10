@@ -95,13 +95,9 @@ class LessonsController extends Controller
      */
     public function actionUpdate($id)
     {
-//        Helper::out(LessonsTest::GetAllById($id));
-//        exit;
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Helper::out(Yii::$app->request->post());
-//            exit;
             LessonsTest::SaveLessonsTest($model->id, Yii::$app->request->post());
             Yii::$app->session->setFlash('success', 'Saved');
             return $this->redirect(['update', 'id' => $id]);

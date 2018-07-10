@@ -53,6 +53,10 @@ AppAsset::register($this);
                             <a href="/lessons" class="<?= !empty($this->params['lessons']) ? 'green-txt' : '' ?>">
                                 Իմ դասընթացը</a>
                         </li>
+                        <li>
+                            <a href="/profile/change" class="<?= !empty($this->params['change']) ? 'green-txt' : '' ?>">
+                                Փոխել դասընթացը</a>
+                        </li>
                         <li class="dropdown">
                             <button onclick="myFunction()"
                                     class="dropbtn <?= !empty($this->params['profile']) ? 'green-txt' : '' ?>"><i
@@ -99,10 +103,10 @@ AppAsset::register($this);
                     <span id="pop_text"></span>
                 </p>
             </div>
-            <a href="" style="display:none;" id="pop_button" class="btn">Վերադասավորել</a>
+            <a href="" style="display:none;" id="pop_button" class="btn ">Վերադասավորել</a>
         </div>
         <div class="user-avatar-large">
-            <img src="/main/assets/images/users/user-avatar-large.png"
+            <img src="/main/assets/images/users/avatars/<?= \common\models\Config::GetAvatar() ?>"
                  alt="<?= Yii::$app->user->identity->first_name ?>"
                  title="<?= Yii::$app->user->identity->first_name ?>"></div>
     </div>

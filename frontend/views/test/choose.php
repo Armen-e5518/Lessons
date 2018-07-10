@@ -30,8 +30,10 @@ $this->params['lessons'] = 'true';
     </div>
 </section>
 <section class="lesson-details">
-    <a href="#" class="user-avatar-small"><img src="/main/assets/images/users/user-avatar-small.png" alt="Կարինե"
-                                               title="Կարինե"></a>
+    <a href="#" class="user-avatar-small"><img
+                src="/main/assets/images/users/avatars/<?= \common\models\Config::GetAvatar() ?>"
+                alt="<?= Yii::$app->user->identity->first_name ?>"
+                title="<?= Yii::$app->user->identity->first_name ?>"></a>
     <div class="container">
         <h3>Փորձիր հատկանիշները դասավորել իրենց համապատասխան պաստառի վրա:<br>
             Կարիք չկա երկար մտածելու, արագ տեղավորիր քարտերը:</h3>
@@ -55,6 +57,8 @@ $this->params['lessons'] = 'true';
 <script>
     var __pop_text = `<?=$data['text_pop']?>`;
     var __choose_test_id = `<?=Yii::$app->request->get('id')?>`;
+    var __global_id = `<?=Yii::$app->request->get('g')?>`;
+    var __Type = <?=\common\models\LessonsTest::TYPE_CHOOSE?>;
     var __Data = <?=json_encode($items, JSON_UNESCAPED_UNICODE)?>;
 
 </script>

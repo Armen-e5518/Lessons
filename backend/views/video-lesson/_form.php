@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
     <div class="row">
         <div class="col-md-6">
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'pop_text')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'pop_text')->textarea(['rows' => 6]) ?>
             <?= $form->field($model, 'text_1')->textarea(['rows' => 6]) ?>
         </div>
         <div class="col-md-6">

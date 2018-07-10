@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use backend\components\Data;
 use common\models\ChooseTestRes;
+use common\models\DragTestRes;
 use Yii;
 use yii\web\Controller;
 use \yii\web\Response;
@@ -57,6 +58,7 @@ class AjaxController extends Controller
         return null;
     }
 
+
     public function actionSaveChooseTest()
     {
         if (Yii::$app->request->isAjax) {
@@ -68,5 +70,15 @@ class AjaxController extends Controller
         }
         return null;
     }
-
+    public function actionSaveDragTest()
+    {
+        if (Yii::$app->request->isAjax) {
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            $post = Yii::$app->request->post();
+            if (!empty($post)) {
+                return DragTestRes::SaveDragTest($post);
+            }
+        }
+        return null;
+    }
 }

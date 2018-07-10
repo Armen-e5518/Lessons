@@ -26,7 +26,7 @@ $this->params['lessons'] = 'true';
                             class="previous-step-txt">վերադառնալ դասերին</span></a></span>
         <span class="page-title">
 						<strong class="test-name"><?= $data['title'] ?></strong>
-						<strong class="test-step">Քայլ <?= $current_lesson['sorting'] ?> / <?= $count ?></strong>
+						<strong class="test-step">Քայլ <?= $current_lesson ?> / <?= $count ?></strong>
 					</span>
         <div class="passed-step"><span class="passed-time"><i class="fas fa-clock"></i><span
                         id="timer">00:00:00</span></span></div>
@@ -34,8 +34,11 @@ $this->params['lessons'] = 'true';
 </section>
 
 <section class="lesson-details">
-    <a href="#" class="user-avatar-small"><img src="/main/assets/images/users/user-avatar-small.png" alt="Կարինե"
-                                               title="Կարինե"></a>
+    <a href="#" class="user-avatar-small">
+        <img src="/main/assets/images/users/avatars/<?=\common\models\Config::GetAvatar()?>"
+             alt="<?= Yii::$app->user->identity->first_name ?>"
+                                               title="<?= Yii::$app->user->identity->first_name ?>">
+    </a>
     <div class="container draggable-block">
         <div class="affecting-factors-set sorting" id="sortable1">
             <?php if (!empty($items)): ?>
@@ -72,6 +75,9 @@ $this->params['lessons'] = 'true';
 </section>
 
 <script>
+    var __id = `<?=Yii::$app->request->get('id')?>`;
+    var __global_id = `<?=Yii::$app->request->get('g')?>`;
+    var __Type = <?=\common\models\LessonsTest::TYPE_DRAG?>;
     var __pop_text = `<?=$data['text_pop']?>`;
     var __data = <?=json_encode($items, JSON_UNESCAPED_UNICODE)?>;
 </script>

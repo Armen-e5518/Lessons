@@ -49,4 +49,9 @@ class PreTests extends \yii\db\ActiveRecord
         return self::find()->asArray()->all();
     }
 
+    public static function GetOne($id)
+    {
+        return self::findOne($id);
+    }
+
 }

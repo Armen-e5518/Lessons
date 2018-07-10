@@ -30,8 +30,8 @@ class VideoLesson extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['text_1', 'text_2'], 'string'],
-            [['title', 'pop_text', 'video_url'], 'string', 'max' => 255],
+            [['text_1', 'text_2','pop_text'], 'string'],
+            [['title', 'video_url'], 'string', 'max' => 255],
         ];
     }
 
@@ -49,9 +49,15 @@ class VideoLesson extends \yii\db\ActiveRecord
             'text_2' => 'Text 2',
         ];
     }
+
     public static function GetAll()
     {
         return self::find()->asArray()->all();
+    }
+
+    public static function GetById($id)
+    {
+        return self::findOne($id);
     }
 
 

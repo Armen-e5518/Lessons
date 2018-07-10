@@ -141,6 +141,11 @@ class LessonsTest extends \yii\db\ActiveRecord
         return self::find()->where(['lesson_id' => $lesson_id])->orderBy(['sorting' => SORT_ASC])->asArray()->one();
     }
 
+    public static function GetFirstTestByType($lesson_id, $type)
+    {
+        return self::find()->where(['lesson_id' => $lesson_id, 'type' => $type])->orderBy(['sorting' => SORT_ASC])->asArray()->one();
+    }
+
     public static function GetTestsByLessonId($lesson_id)
     {
         return self::find()->where(['lesson_id' => $lesson_id])->orderBy(['sorting' => SORT_ASC])->asArray()->all();

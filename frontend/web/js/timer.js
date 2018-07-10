@@ -80,6 +80,7 @@ function StartTIME() {
     readout = dh + ':' + dm + ':' + ds;
     // document.MyForm.stopwatch.value = readout;
     $('#timer').html(readout)
+    $('#timer_input').val(readout)
     clocktimer = setTimeout("StartTIME()", 1);
 }
 

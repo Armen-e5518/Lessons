@@ -13,6 +13,10 @@ use Yii;
  */
 class ChooseTests extends \yii\db\ActiveRecord
 {
+    const STATUS_MALE_FEMALE = 0;
+
+    const STATUS_MALE_FEMALE_BOTH = 1;
+
     /**
      * {@inheritdoc}
      */
@@ -27,6 +31,7 @@ class ChooseTests extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['status'], 'integer'],
             [['text_pop', 'title'], 'string', 'max' => 255],
         ];
     }
@@ -40,8 +45,10 @@ class ChooseTests extends \yii\db\ActiveRecord
             'id' => 'ID',
             'text_pop' => 'Text Pop',
             'title' => 'Title',
+            'status' => 'status',
         ];
     }
+
     public static function GetAll()
     {
         return self::find()->asArray()->all();

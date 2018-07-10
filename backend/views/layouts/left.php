@@ -15,6 +15,7 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
 //                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
+                    ['label' => 'Config', 'icon' => 'file-code-o', 'url' => ['/config/update?id=1']],
                     ['label' => 'Primary Tests', 'icon' => 'file-code-o', 'url' => ['/pre-tests']],
                     ['label' => 'Drag Tests', 'icon' => 'file-code-o', 'url' => ['/drag-tests']],
                     ['label' => 'Choose Tests', 'icon' => 'file-code-o', 'url' => ['/choose-tests']],

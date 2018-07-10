@@ -50,9 +50,10 @@ class ChooseTestRes extends \yii\db\ActiveRecord
         ];
     }
 
+
     public static function SaveTest($data)
     {
-        if (!empty($data)) {
+        if (!empty($data['male'])) {
             foreach ($data['male'] as $i) {
                 $model = new self();
                 $model->status = 1;
@@ -66,6 +67,15 @@ class ChooseTestRes extends \yii\db\ActiveRecord
             foreach ($data['female'] as $i) {
                 $model = new self();
                 $model->status = 0;
+                $model->item_id = $i;
+                $model->test_id = (int)$data['choose_test_id'];
+                $model->user_id = Yii::$app->user->getId();
+                $model->time = (int)Helper::seconds_from_time($data['time']);
+                $model->save();
+            }
+            foreach ($data['female'] as $i) {
+                $model = new self();
+                $model->status = 2;
                 $model->item_id = $i;
                 $model->test_id = (int)$data['choose_test_id'];
                 $model->user_id = Yii::$app->user->getId();

@@ -52,6 +52,6 @@ class UserTests extends \yii\db\ActiveRecord
 
     public static function GetCurrentUserTestsState()
     {
-        return self::findAll(['user_id' => Yii::$app->user->getId()]);
+        return self::find()->where(['user_id' => Yii::$app->user->getId()])->asArray()->all();
     }
 }

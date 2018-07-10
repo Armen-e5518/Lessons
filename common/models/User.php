@@ -63,7 +63,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            [['first_name', 'last_name', 'sex', 'region', 'city', 'community','school','grade'], 'required'],
+            [['first_name', 'last_name', 'sex', 'region', 'city', 'community', 'school', 'grade'], 'required'],
         ];
     }
 
@@ -78,6 +78,13 @@ class User extends ActiveRecord implements IdentityInterface
         $user->community = $data['community'];
         $user->school = $data['school'];
         $user->grade = $data['grade'];
+        return $user->save();
+    }
+
+    public static function UpdateGrade($grade)
+    {
+        $user = self::findOne(Yii::$app->user->getId());
+        $user->current_grade = $grade;
         return $user->save();
     }
 
@@ -138,7 +145,7 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
         }
 
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
     }

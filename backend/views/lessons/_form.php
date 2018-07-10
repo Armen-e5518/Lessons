@@ -35,7 +35,8 @@ $this->registerJsFile('/admin/js/lessons.js');
                                     $type = $lesson['type'] == 1 ? 'drag' : '';
                                     $type = $lesson['type'] == 2 ? 'choose' : $type;
                                     $type = $lesson['type'] == 3 ? 'video' : $type ?>
-                                    <div class="item <?= $type ?>" data-type="<?= $lesson['type'] ?>" data-sorting="<?=$lesson['sorting']?>">
+                                    <div class="item <?= $type ?>" data-type="<?= $lesson['type'] ?>"
+                                         data-sorting="<?= $lesson['sorting'] ?>">
                                         <input type="hidden" value="<?= $lesson['test_id'] ?>"
                                                name="list[<?= $type ?>][ids][<?= $lesson['sorting'] ?>]">
                                         <span class="title"><?= $lesson['title'] ?></span>
@@ -82,7 +83,10 @@ $this->registerJsFile('/admin/js/lessons.js');
                                 <?php foreach ($choose_lessons as $lesson): ?>
                                     <div class="item choose">
                                         <input type="hidden" value="<?= $lesson['id'] ?>" name="list[choose][ids]">
-                                        <span class="title"><?= $lesson['title'] ?></span>
+                                        <span class="title">
+                                            <?= $lesson['title'] ?>
+                                            <br>
+                                            <?= $lesson['status'] == 0 ? '(male female)' : '(male female both)' ?> </span>
                                         <i class="fa fa-fw fa-close" title="Delete"></i>
                                     </div>
                                 <?php endforeach; ?>

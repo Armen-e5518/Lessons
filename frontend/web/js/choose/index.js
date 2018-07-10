@@ -20,7 +20,7 @@ $(document).ready(function () {
             $('.gender-power-btn span').html(Choose_data.title);
 
         } else {
-            $('#pop_button').show().html('Հաջորդ դասը').attr('href', '/lessons');
+            $('#pop_button').show().html('Հաջորդ դասը').attr('href', '/test/next-lesson?id=' + __choose_test_id + '&g=' + __global_id + '&type=' + __Type);
             $('.lesson-popup-close').hide();
             $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
             SaveUserTestData()
@@ -35,7 +35,7 @@ $(document).ready(function () {
             $('.gender-power-btn span').html(Choose_data.title);
 
         } else {
-            $('#pop_button').show().html('Հաջորդ դասը').attr('href', '/lessons');
+            $('#pop_button').show().html('Հաջորդ դասը').attr('href', '/test/next-lesson?id=' + __choose_test_id + '&g=' + __global_id + '&type=' + __Type);
             $('.lesson-popup-close').hide();
             $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
             SaveUserTestData()
@@ -47,7 +47,7 @@ function SaveUserTestData() {
     var data = {};
     data.choose_test_id = __choose_test_id;
     data.male = GetMaleResponsibility();
-    data.female = GetMaleResponsibility();
+    data.female = GetFemaleResponsibility();
     data.time = $('#timer').html();
     $.ajax({
         type: "POST",

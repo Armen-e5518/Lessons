@@ -58,6 +58,7 @@ class ProfileController extends Controller
 
         ]);
     }
+
     public function actionChoose2()
     {
         $this->layout = false;
@@ -65,6 +66,7 @@ class ProfileController extends Controller
 
         ]);
     }
+
     public function actionContact()
     {
         $model = new ContactForm();
@@ -94,5 +96,36 @@ class ProfileController extends Controller
         return $this->render('faq');
     }
 
+    public function actionChange()
+    {
+        return $this->render('change', [
+            'class_8' => [
+                'link' => '/profile/change-grade?g=8',
+                'class' => Yii::$app->user->identity->current_grade == 8 ? 'active-choose' : ''
+            ],
+            'class_9' => [
+                'link' => Yii::$app->user->identity->grade >= 9 ? '/profile/change-grade?g=9' : '#',
+                'class' => Yii::$app->user->identity->current_grade == 9 ? 'active-choose' : '',
+                'class1' => Yii::$app->user->identity->grade < 9 ? 'inactive-choose' : ''
+            ],
+            'class_10' => [
+                'link' => Yii::$app->user->identity->grade >= 10 ? '/profile/change-grade?g=10' : '#',
+                'class' => Yii::$app->user->identity->current_grade == 10 ? 'active-choose' : '',
+                'class1' => Yii::$app->user->identity->grade < 10 ? 'inactive-choose' : ''
+            ],
+            'class_11' => [
+                'link' => Yii::$app->user->identity->grade >= 11 ? '/profile/change-grade?g=11' : '#',
+                'class' => Yii::$app->user->identity->current_grade == 11 ? 'active-choose' : '',
+                'class1' => Yii::$app->user->identity->grade < 11 ? 'inactive-choose' : ''
+            ],
+        ]);
+    }
 
+    public function actionChangeGrade($g)
+    {
+        if (Yii::$app->user->identity->grade >= $g) {
+            User::UpdateGrade($g);
+        }
+        return $this->redirect('/lessons');
+    }
 }
