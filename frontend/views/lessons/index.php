@@ -28,7 +28,7 @@ $flag = true;
             <?php if (!empty($lessons_group)) : ?>
                 <?php foreach ($lessons_group as $k => $item) :
 
-                    if ($k == count($lessons_group) - 1 && $item['type'] == 1 && $class != 'upcoming-lesson') {
+                    if ($k == count($lessons_group) - 1 && $item['type'] == 1 && $class != 'upcoming-lesson' && $class != 'current-lesson') {
                         $last_test = UserTestsState::GetSecondPreLesson($item['lesson_id']);
                         if ($last_test['status'] == 0) {
                             $href = "/test/primary?id={$item['lesson_id']}&l={$last_test['id']}";
@@ -56,6 +56,13 @@ $flag = true;
                     </li>
                 <?php endforeach; ?>
             <?php endif; ?>
+
         </ul>
+
+        <?php if ($class == 'passed-lesson'): ?>
+            <div class="propmt-access">
+                <a  href="/profile/change" style="font-size: 19px" class="btn blue-btn" name="contact-button">Փոխել դասընթացը</a>
+            </div>
+        <?php endif; ?>
     </div>
 </section>

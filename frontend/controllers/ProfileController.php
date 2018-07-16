@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use backend\components\Data;
 use backend\components\Helper;
 use common\models\User;
+use common\models\UserTestsState;
 use frontend\models\SignupForm;
 use Yii;
 use yii\web\Controller;
@@ -104,28 +105,33 @@ class ProfileController extends Controller
                 'class' => Yii::$app->user->identity->current_grade == 8 ? 'active-choose' : ''
             ],
             'class_9' => [
-                'link' => Yii::$app->user->identity->grade >= 9 ? '/profile/change-grade?g=9' : '#',
+                'link' => (Yii::$app->user->identity->grade >= 9 || UserTestsState::CheckUserLesson(8)) ? '/profile/change-grade?g=9' : '#',
                 'class' => Yii::$app->user->identity->current_grade == 9 ? 'active-choose' : '',
-                'class1' => Yii::$app->user->identity->grade < 9 ? 'inactive-choose' : ''
+                'class1' => (9 < Yii::$app->user->identity->grade || UserTestsState::CheckUserLesson(8)) ? '' : 'inactive-choose'
             ],
             'class_10' => [
-                'link' => Yii::$app->user->identity->grade >= 10 ? '/profile/change-grade?g=10' : '#',
+                'link' => (Yii::$app->user->identity->grade >= 10 || UserTestsState::CheckUserLesson(9)) ? '/profile/change-grade?g=10' : '#',
                 'class' => Yii::$app->user->identity->current_grade == 10 ? 'active-choose' : '',
-                'class1' => Yii::$app->user->identity->grade < 10 ? 'inactive-choose' : ''
+                'class1' => (10 < Yii::$app->user->identity->grade || UserTestsState::CheckUserLesson(9)) ? '' : 'inactive-choose'
             ],
             'class_11' => [
-                'link' => Yii::$app->user->identity->grade >= 11 ? '/profile/change-grade?g=11' : '#',
+                'link' => (Yii::$app->user->identity->grade >= 11 || UserTestsState::CheckUserLesson(10)) ? '/profile/change-grade?g=11' : '#',
                 'class' => Yii::$app->user->identity->current_grade == 11 ? 'active-choose' : '',
-                'class1' => Yii::$app->user->identity->grade < 11 ? 'inactive-choose' : ''
+                'class1' => (11 < Yii::$app->user->identity->grade || UserTestsState::CheckUserLesson(10)) ? '' : 'inactive-choose'
             ],
         ]);
     }
 
     public function actionChangeGrade($g)
     {
-        if (Yii::$app->user->identity->grade >= $g) {
+        if (Yii::$app->user->identity->grade >= $g || UserTestsState::CheckUserLesson($g - 1)) {
             User::UpdateGrade($g);
         }
         return $this->redirect('/lessons');
+    }
+
+    public function actionCertificates()
+    {
+        return $this->render('certificates', []);
     }
 }

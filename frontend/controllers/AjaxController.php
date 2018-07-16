@@ -4,7 +4,9 @@ namespace frontend\controllers;
 
 use backend\components\Data;
 use common\models\ChooseTestRes;
+use common\models\City;
 use common\models\DragTestRes;
+use common\models\Schools;
 use Yii;
 use yii\web\Controller;
 use \yii\web\Response;
@@ -28,7 +30,7 @@ class AjaxController extends Controller
             \Yii::$app->response->format = Response::FORMAT_JSON;
             $post = Yii::$app->request->post();
             if (!empty($post['id'])) {
-                return Data::GetCityByRegion()[$post['id']];
+                return Schools::GetCityByRegion([$post['id']]);
             }
         }
         return null;
@@ -40,7 +42,7 @@ class AjaxController extends Controller
             \Yii::$app->response->format = Response::FORMAT_JSON;
             $post = Yii::$app->request->post();
             if (!empty($post['region_id'] && !empty($post['city_id']))) {
-                return Data::GetCommunity()[$post['region_id']][$post['city_id']];
+                return Schools::GetCommunity($post['region_id'], $post['city_id']);
             }
         }
         return null;
@@ -52,7 +54,7 @@ class AjaxController extends Controller
             \Yii::$app->response->format = Response::FORMAT_JSON;
             $post = Yii::$app->request->post();
             if (!empty($post['region_id'] && !empty($post['city_id']) && !empty($post['community_id']))) {
-                return Data::GetSchool()[$post['region_id']][$post['city_id']][$post['community_id']];
+                return Schools::GetSchool($post['region_id'], $post['city_id'], $post['community_id']);
             }
         }
         return null;
@@ -70,6 +72,7 @@ class AjaxController extends Controller
         }
         return null;
     }
+
     public function actionSaveDragTest()
     {
         if (Yii::$app->request->isAjax) {

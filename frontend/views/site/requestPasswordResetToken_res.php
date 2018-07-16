@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
@@ -18,11 +19,12 @@ $this->params['login'] = 'true';
     <div class="container">
         <div class="propmt-access regis-login">
             <h4>Փոխել Գաղտնաբառը</h4>
-            <?php $form = ActiveForm::begin(['id' => 'login-form',  'validateOnBlur' => false, 'fieldConfig' => ['options' => ['tag' => false]]]); ?>
+            <?php $form = ActiveForm::begin(['id' => 'login-form', 'action' => '/site/request-password-reset-save', 'fieldConfig' => ['options' => ['tag' => false]]]); ?>
             <div class="form-fld">
-                <?= $form->field($model, 'username')->input(['class' => ''])->label('Օգտանուն') ?>
+                <?= $form->field($model, 'username')->hiddenInput(['class' => '', 'value' => $user->username])->label(false) ?>
+                <?= $form->field($model, 'password')->passwordInput(['class' => ''])->label('Նոր Գաղտնաբառ') ?>
             </div>
-            <?= Html::submitButton('Առաջ', ['class' => 'btn blue-btn', 'name' => 'login-button']) ?>
+            <?= Html::submitButton('Պահպանել', ['class' => 'btn blue-btn', 'name' => 'login-button']) ?>
             <?php ActiveForm::end(); ?>
         </div>
     </div>

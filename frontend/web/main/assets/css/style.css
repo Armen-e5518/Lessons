@@ -228,6 +228,13 @@ body {
 							flex: 1;
 							line-height: 33px;
 						}
+
+						.forgote {
+						    font-size: 18px;
+						    margin-bottom: 25px;
+						    display: inline-block;
+						    text-decoration: underline;
+						}
 					
 							.breadcrumb .page-title strong {
 								font-family: sans-serif, 'NotoSansArmenian-Medium';
@@ -625,6 +632,18 @@ body {
 			    border-radius: 10px;
 			}
 			
+			samp.number {
+			    position: absolute;
+			    left: 50%;
+			    top: 38px;
+			    margin: auto;
+			    font-size: 18px;
+			    color: #acacac;
+			    z-index: -1;
+			    font-size: 18px;
+			    color: #acacac;
+			}
+			
 			strong.draggable-text {
 			    color: #0085c9;
 			    margin-bottom: 15px;
@@ -634,6 +653,7 @@ body {
 			
 			.row-1 {
 			    margin-bottom: 1vw;
+			    position:relative;
 			}
 
 			.drag-right-area {
@@ -1173,17 +1193,17 @@ body {
 		position: relative;
 	}
 
-	.choose-course {
+	.choose-course, .choose-certificate {
 	    max-width: 850px;
 	    margin: 50px auto ;
 	    justify-content: space-between;
 	    flex-wrap: wrap;
 	}
 
-		.choose-course .course-item {
+		.choose-course .course-item,
+		.certificate-item {
 			width: 48%;
-		    border: 1px solid #91a7b4;
-		    color: #91a7b4;
+		    color: #0085c9;
 		    margin-bottom: 30px;
 		    min-height: 180px;
 		    display: flex;
@@ -1194,26 +1214,71 @@ body {
 		    position: relative;
 		}
 
-		.course-item.active-choose:before {
+		.choose-course .course-item {
+		    border: 1px solid #0085c9;
+		}
+
+		.course-item.active-choose:before,
+		.active-certificate strong:after {
 		    content: "\f00c";
 		    font-family: Font Awesome\ 5 Free;
 		    font-weight: 900;
 		    color: #3ec341;
-		    position: absolute;
+		}
+
+		.course-item.active-choose:before {
 		    left: 25px;
 		    top: 25px;
-		    font-size: 58px;
+		    font-size: 58px;		    
+		    position: absolute;
 		}
 
-		.choose-course .course-item:hover,
-		.course-item.active-choose {
-			border-color:  #0085c9;
-		    color: #0085c9;
+		.active-certificate strong:after  {
+		    font-size: 25px;
+		    margin-left: 5px;
 		}
 
-			.course-item strong {
+		.active-certificate {
+			color: #3ec341;
+		}
+		
+		.course-item.active-choose,
+		.choose-course .course-item:hover {
+		    background-color:  #0085c9;
+		    border-color:  #0085c9;
+		    color: #fff;
+		}
+
+		.certificate-item.inactive-certificate {
+		    -webkit-filter: grayscale(100%);
+		    filter: grayscale(100%);
+		    cursor: no-drop;
+		}
+		
+		.choose-course .course-item.inactive-choose {
+		    background-color: #f7f7f7;
+		    cursor: no-drop;
+		    border-color:#91a7b4;
+		    color:#91a7b4;
+		}
+		
+		.choose-course .course-item.inactive-choose:hover {
+			opacity:0.8;
+		}
+
+			.course-item strong,
+			.certificate-item strong {
 				margin-bottom: 10px;
 				font-size: 20px;
+			}
+
+			.certificate-item img {
+			    width: 100%;
+			    object-fit: cover;
+			    max-height: 300px;
+			    margin-bottom: 20px;
+			    padding: 10px;
+    			border: 1px solid rgba(102,102,102,0.1);
 			}
 
 	.test-list  .container{
@@ -1585,10 +1650,6 @@ body {
 		    max-width: 100px;
 		}
 
-		.contact-area > *, .form-top > * {
-		    width: 100%;
-		}
-
 		.contact-area, .form-top {
 			flex-direction: column;
 		}
@@ -1601,10 +1662,6 @@ body {
 			margin-bottom: 40px;
 		}
 
-		.registration .form-fld {
-		    width: 100%;
-		}
-
 		.regis-login.registration,
 		.edit-profile-info  .regis-login {
 		    max-width: 400px;
@@ -1614,7 +1671,10 @@ body {
 		    height: 335px;
 		}
 
-		.choose-course .course-item {
+		.choose-course .course-item,
+		.certificate-item,
+		.registration .form-fld,
+		.contact-area > *, .form-top > * {
 			width: 100%;
 		}
 

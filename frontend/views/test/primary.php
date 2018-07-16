@@ -39,56 +39,25 @@ $this->params['lessons'] = 'true';
                 <?php foreach ($tests as $k => $item): $k++ ?>
                     <div class="test-item">
                         <h3><?= $k . '. ' . $item['question'] ?></h3>
-                        <?php if (strpos($item['right_answers'], ',') !== false) : ?>
-                            <?php if (!empty($item['answer_1'])): ?>
-                                <div><input type="checkbox" name="test[<?= $item['id'] ?>][1]"
-                                            id="test[<?= $item['id'] ?>][1]"><label
-                                            for="test[<?= $item['id'] ?>][1]"><?= $item['answer_1'] ?></label>
-                                </div>
-                            <?php endif; ?>
-                            <?php if (!empty($item['answer_2'])): ?>
-                                <div><input type="checkbox" name="test[<?= $item['id'] ?>][2]"
-                                            id="test[<?= $item['id'] ?>][2]"><label
-                                            for="test[<?= $item['id'] ?>][2]"><?= $item['answer_2'] ?></label>
-                                </div>
-                            <?php endif; ?>
-                            <?php if (!empty($item['answer_3'])): ?>
-                                <div><input type="checkbox" name="test[<?= $item['id'] ?>][3]"
-                                            id="test[<?= $item['id'] ?>][3]"><label
-                                            for="test[<?= $item['id'] ?>][3]"><?= $item['answer_3'] ?></label></div>
-                            <?php endif; ?>
-                            <?php if (!empty($item['answer_4'])): ?>
-                                <div><input type="checkbox" name="test[<?= $item['id'] ?>][4]"
-                                            id="test[<?= $item['id'] ?>][4]"><label
-                                            for="test[<?= $item['id'] ?>][4]"><?= $item['answer_4'] ?></label>
-                                </div>
-                            <?php endif; ?>
 
+                        <?php if (strpos($item['right_answers'], ',') !== false) : ?>
+                            <?php for ($i = 1; $i < 9; $i++): ?>
+                                <?php if (!empty($item['answer_' . $i])): ?>
+                                    <div><input type="checkbox" name="test[<?= $item['id'] ?>][<?= $i ?>]"
+                                                id="test[<?= $item['id'] ?>][<?= $i ?>]"><label
+                                                for="test[<?= $item['id'] ?>][<?= $i ?>]"><?= $item['answer_' . $i] ?></label>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endfor; ?>
                         <?php else: ?>
-                            <?php if (!empty($item['answer_1'])): $n = rand(1, 1000) ?>
-                                <div><input type="radio" name="test[<?= $item['id'] ?>][rad]" value="1"
-                                            id="<?= $n ?>"><label
-                                            for="<?= $n ?>"><?= $item['answer_1'] ?></label>
-                                </div>
-                            <?php endif; ?>
-                            <?php if (!empty($item['answer_2'])): $n = rand(1, 1000) ?>
-                                <div><input type="radio" name="test[<?= $item['id'] ?>][rad]" value="2"
-                                            id="<?= $n ?>"><label
-                                            for="<?= $n ?>"><?= $item['answer_2'] ?></label>
-                                </div>
-                            <?php endif; ?>
-                            <?php if (!empty($item['answer_3'])): $n = rand(1, 1000) ?>
-                                <div><input type="radio" name="test[<?= $item['id'] ?>][rad]" value="3"
-                                            id="test[<?= $item['id'] ?>][rad]"><label
-                                            for="test[<?= $item['id'] ?>][rad]"><?= $item['answer_3'] ?></label>
-                                </div>
-                            <?php endif; ?>
-                            <?php if (!empty($item['answer_4'])): $n = rand(1, 1000) ?>
-                                <div><input type="radio" name="test[<?= $item['id'] ?>][rad]" value="4"
-                                            id="<?= $n ?>"><label
-                                            for="<?= $n ?>"><?= $item['answer_4'] ?></label>
-                                </div>
-                            <?php endif; ?>
+                            <?php for ($i = 1; $i < 9; $i++): ?>
+                                <?php if (!empty($item['answer_' . $i])): $n = rand(1, 1000) ?>
+                                    <div><input type="radio" name="test[<?= $item['id'] ?>][rad]" value="<?= $i ?>"
+                                                id="<?= $n ?>"><label
+                                                for="<?= $n ?>"><?= $item['answer_' . $i] ?></label>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endfor; ?>
                         <?php endif; ?>
 
                     </div>

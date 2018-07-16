@@ -11,6 +11,19 @@ namespace backend\components;
 
 class Data
 {
+
+    public static function GetQuestions()
+    {
+        return [
+            0 => '--',
+            1 => 'Questions 1',
+            2 => 'Questions 2',
+            3 => 'Questions 3',
+            4 => 'Questions 4',
+            5 => 'Questions 5',
+        ];
+    }
+
     public static function GetRegion()
     {
         return [

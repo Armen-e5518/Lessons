@@ -55,6 +55,7 @@ class PreTestsRes extends \yii\db\ActiveRecord
     public static function SaveUserAnswer($data)
     {
         if (!empty($data['test'])) {
+            $answers = [];
             foreach ($data['test'] as $id => $d) {
                 $answer = !empty($d['rad']) ? $d['rad'] : implode(',', array_keys($d));
                 $model = new self();
@@ -63,8 +64,11 @@ class PreTestsRes extends \yii\db\ActiveRecord
                 $model->time = Helper::seconds_from_time($data['timer']);
                 $model->answer = $answer;
                 $model->save();
+                $answers['answers'][$id] = $answer;
+                $answers['ids'][] = $id;
             }
+            return $answers;
         }
-        return true;
+        return false;
     }
 }

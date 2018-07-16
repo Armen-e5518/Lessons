@@ -15,6 +15,12 @@ use Yii;
  * @property string $answer_2
  * @property string $answer_3
  * @property string $answer_4
+ * @property string $answer_5
+ * @property string $answer_6
+ * @property string $answer_7
+ * @property string $answer_8
+ * @property string $answer_9
+ * @property string $answer_10
  * @property string $right_answers
  *
  * @property PreTests $preTest
@@ -36,7 +42,15 @@ class TestsQuestion extends \yii\db\ActiveRecord
     {
         return [
             [['pre_test_id'], 'integer'],
-            [['question', 'answer_1', 'answer_2', 'answer_3', 'answer_4', 'right_answers'], 'string', 'max' => 255],
+            [['question',
+                'answer_1',
+                'answer_5',
+                'answer_6',
+                'answer_7',
+                'answer_8',
+                'answer_9',
+                'answer_10',
+                'answer_2', 'answer_3', 'answer_4', 'right_answers'], 'string', 'max' => 255],
         ];
     }
 
@@ -70,6 +84,12 @@ class TestsQuestion extends \yii\db\ActiveRecord
                     $model->answer_2 = $item['answer_2'];
                     $model->answer_3 = $item['answer_3'];
                     $model->answer_4 = $item['answer_4'];
+                    $model->answer_5 = $item['answer_5'];
+                    $model->answer_6 = $item['answer_6'];
+                    $model->answer_7 = $item['answer_7'];
+                    $model->answer_8 = $item['answer_8'];
+                    $model->answer_9 = $item['answer_9'];
+//                    $model->answer_10 = $item['answer_10'];
                     $model->right_answers = Helper::GetRightAnswers($item);
                     $model->save();
                 }
@@ -81,6 +101,11 @@ class TestsQuestion extends \yii\db\ActiveRecord
     public static function GetTestsQuestionByTestId($id)
     {
         return self::find()->where(['pre_test_id' => $id])->asArray()->all();
+    }
+
+    public static function GetResultsByIds($ida)
+    {
+        return self::find()->select(['right_answers', 'id'])->where(['id' => $ida])->indexBy('id')->column();
     }
 
 }

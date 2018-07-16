@@ -16,7 +16,7 @@ $this->registerJsFile('/js/video/index.js');
 
 $this->title = '“Առողջ Ապրելակերպ”';
 $this->params['class'] = 'inner-page';
-$this->params['about'] = 'lessons';
+$this->params['lessons'] = 'true';
 ?>
 
 <section class="breadcrumb">

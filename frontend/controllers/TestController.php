@@ -80,8 +80,9 @@ class TestController extends Controller
     {
 
         if (Yii::$app->request->post()) {
-            PreTestsRes::SaveUserAnswer(Yii::$app->request->post());
-            UserTestsState::UpdateData($id, LessonGropuRel::TYPE_PRE, 55, $l);
+            $answers = PreTestsRes::SaveUserAnswer(Yii::$app->request->post());
+            $point = !empty($answers) ? Helper::GetPreTestPoint($answers['answers'], TestsQuestion::GetResultsByIds($answers['ids'])) : 0;
+            UserTestsState::UpdateData($id, LessonGropuRel::TYPE_PRE, $point, $l);
             return $this->redirect('/lessons');
         }
 

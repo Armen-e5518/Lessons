@@ -22,6 +22,8 @@ class SignupForm extends Model
     public $community;
     public $school;
     public $grade;
+    public $question_id;
+    public $answer;
 
 
     /**
@@ -40,11 +42,11 @@ class SignupForm extends Model
             ['password', 'string', 'min' => 6],
 
             ['password_com', 'required'],
-            ['password_com', 'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
+            ['password_com', 'compare', 'compareAttribute' => 'password', 'message' => "Passwords don't match"],
 
-            [['first_name', 'last_name', 'sex', 'region', 'city', 'community','school','grade'], 'required'],
-            [['sex', 'region', 'city', 'community','school','grade'], 'integer'],
-            [['first_name', 'last_name'], 'string', 'max' => 255],
+            [['first_name', 'last_name', 'sex', 'region', 'city', 'community', 'school', 'grade', 'answer', 'question_id'], 'required'],
+            [['sex', 'region', 'city', 'community', 'school', 'grade', 'question_id'], 'integer'],
+            [['first_name', 'last_name','answer'], 'string', 'max' => 255],
         ];
     }
 
@@ -69,6 +71,9 @@ class SignupForm extends Model
         $user->community = $this->community;
         $user->school = $this->school;
         $user->grade = $this->grade;
+        $user->current_grade = $this->grade;
+        $user->answer = $this->answer;
+        $user->question_id = $this->question_id;
 //        $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();

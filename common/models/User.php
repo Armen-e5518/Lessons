@@ -29,6 +29,8 @@ use yii\web\IdentityInterface;
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
+ * @property integer $question_id
+ * @property integer $answer
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -63,7 +65,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            [['first_name', 'last_name', 'sex', 'region', 'city', 'community', 'school', 'grade'], 'required'],
+            [['first_name', 'last_name', 'sex', 'region', 'city', 'community', 'school', 'grade', 'question_id', 'answer'], 'required'],
         ];
     }
 
@@ -86,6 +88,12 @@ class User extends ActiveRecord implements IdentityInterface
         $user = self::findOne(Yii::$app->user->getId());
         $user->current_grade = $grade;
         return $user->save();
+    }
+
+    public static function GetUserByUserName($user)
+    {
+        return self::findOne(['username' => $user]);
+
     }
 
     /**

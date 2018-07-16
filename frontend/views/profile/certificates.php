@@ -11,47 +11,47 @@ $this->registerCssFile('https://use.fontawesome.com/releases/v5.0.13/css/all.css
 
 $this->title = '“Առողջ Ապրելակերպ”';
 $this->params['class'] = 'inner-page';
-$this->params['change'] = 'true';
+$this->params['profile'] = 'true';
 ?>
 <section class="breadcrumb">
     <div class="container">
         <span class="previous-step"><a href="#"><i class="fas fa-arrow-left"></i><span class="previous-step-txt">վերադառնալ</span></a></span>
-        <span class="page-title"><strong>Դասընթացներ</strong></span>
+        <span class="page-title"><strong>Սերտիֆիկատներ</strong></span>
         <div class="w-135"></div>
     </div>
 </section>
 <section class="courses">
-
+    <a href="#" class="user-avatar-small"><img src="/main/assets/images/users/user-avatar-small.png" alt="Կարինե"
+                                               title="Կարինե"></a>
     <div class="container">
-        <div class="choose-course d-flex" data-c="<?= Yii::$app->user->identity->grade ?>">
-            <a href="<?= $class_8['link'] ?>"
-               class="course-item  <?= $class_8['class'] ?>">
+        <div class="choose-certificate d-flex">
+            <a href="#" class="certificate-item active-certificate">
+                <img src="/main/assets/images/cert-1.jpg">
                 <strong>
                     8-րդ դասարան
                 </strong>
-
             </a>
-            <a href="<?= $class_9['link'] ?>"
-               class="course-item <?= $class_9['class'] ?> <?= $class_9['class1'] ?>">
+            <a href="#" class="certificate-item inactive-certificate">
+                <img src="/main/assets/images/cert-2.jpg">
                 <strong>
                     9-րդ դասարան
                 </strong>
 
             </a>
-            <a href="<?= $class_10['link'] ?>"
-               class="course-item <?= $class_10['class'] ?> <?= $class_10['class1'] ?>">
+            <a href="#" class="certificate-item inactive-certificate">
+                <img src="/main/assets/images/cert-1.jpg">
                 <strong>
                     10-րդ դասարան
                 </strong>
 
             </a>
-            <a href="<?= $class_11['link'] ?>"
-               class="course-item <?= $class_11['class'] ?> <?= $class_11['class1'] ?>">
+            <a href="#" class="certificate-item inactive-certificate">
+                <img src="/main/assets/images/cert-2.jpg">
                 <strong>
                     11-րդ դասարան
                 </strong>
-
             </a>
+
         </div>
     </div>
 </section>

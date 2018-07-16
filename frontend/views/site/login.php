@@ -28,6 +28,7 @@ $this->params['login'] = 'true';
             </div>
             <div class="form-fld">
                 <?= $form->field($model, 'rememberMe')->checkbox()->label('Հիշել') ?>
+                <a class="forgote" href="/site/request-password-reset">Նոռացել եմ․․․ </a>
             </div>
             <?= Html::submitButton('Մուտք', ['class' => 'btn blue-btn', 'name' => 'login-button']) ?>
             <?php ActiveForm::end(); ?>

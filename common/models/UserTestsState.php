@@ -114,4 +114,19 @@ class UserTestsState extends \yii\db\ActiveRecord
             ->asArray()
             ->one();
     }
+
+    public static function CheckUserLesson($grade)
+    {
+        $STATUS_UPCOMING = self::findOne([
+            'user_id' => Yii::$app->user->getId(),
+            'grade' => $grade,
+            'status' => self::STATUS_UPCOMING, //0
+        ]);
+        $STATUS_PASSED = self::findOne([
+            'user_id' => Yii::$app->user->getId(),
+            'grade' => $grade,
+            'status' => self::STATUS_PASSED,  //1
+        ]);
+        return empty($STATUS_UPCOMING) && !empty($STATUS_PASSED);
+    }
 }

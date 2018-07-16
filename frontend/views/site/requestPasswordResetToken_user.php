@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
@@ -13,14 +14,24 @@ $this->title = '“Առողջ Ապրելակերպ” առցանց դասընթ�
 $this->params['class'] = 'home-slide';
 $this->params['login'] = 'true';
 ?>
+<style>
+    .help-block-error {
+        display: none !important;
+    }
+</style>
 
 <section>
     <div class="container">
         <div class="propmt-access regis-login">
             <h4>Փոխել Գաղտնաբառը</h4>
-            <?php $form = ActiveForm::begin(['id' => 'login-form',  'validateOnBlur' => false, 'fieldConfig' => ['options' => ['tag' => false]]]); ?>
+            <?php $form = ActiveForm::begin(['id' => 'login-form', 'validateOnBlur' => false, 'fieldConfig' => ['options' => ['tag' => false]]]); ?>
             <div class="form-fld">
-                <?= $form->field($model, 'username')->input(['class' => ''])->label('Օգտանուն') ?>
+                <h3><?= \backend\components\Data::GetQuestions()[$user->question_id] ?></h3>
+            </div>
+            <div class="form-fld">
+                <?= $form->field($model, 'username')->hiddenInput(['class' => '', 'value' => $model->username])->label(false) ?>
+                <?= $form->field($model, 'question_id')->hiddenInput(['class' => '', 'value' => $user->question_id])->label(false) ?>
+                <?= $form->field($model, 'answer')->textInput(['class' => ''])->label('Պատասխան') ?>
             </div>
             <?= Html::submitButton('Առաջ', ['class' => 'btn blue-btn', 'name' => 'login-button']) ?>
             <?php ActiveForm::end(); ?>

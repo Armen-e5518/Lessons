@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use  backend\components\Data;
+use common\models\Schools;
 
 /* @var $this yii\web\View */
 $this->registerCssFile('/main/assets/css/bootstrap.min.css');
@@ -43,16 +44,16 @@ $this->params['profile'] = 'true';
                 </label>
             </div>
             <div class="form-fld">
-                <?= $form->field($model, 'region')->dropDownList(Data::GetRegion(), ['autofocus' => true, 'class' => '', 'id' => 'region'])->label('Մարզ <em>*</em>') ?>
+                <?= $form->field($model, 'region')->dropDownList(array_merge([0 => '--'], \common\models\Region::GetAll()), ['autofocus' => true, 'class' => '', 'id' => 'region'])->label('Մարզ <em>*</em>') ?>
             </div>
             <div class="form-fld required ">
-                <?= $form->field($model, 'city')->dropDownList(Data::GetCityByRegion()[$model->region], ['autofocus' => true, 'class' => '', 'id' => 'city'])->label('Քաղաք <em>*</em>') ?>
+                <?= $form->field($model, 'city')->dropDownList(Schools::GetCityByRegion($model->region), ['autofocus' => true, 'class' => '', 'id' => 'city'])->label('Քաղաք <em>*</em>') ?>
             </div>
             <div class="form-fld">
-                <?= $form->field($model, 'community')->dropDownList(Data::GetCommunity()[$model->region][$model->city], ['autofocus' => true, 'class' => '', 'id' => 'community'])->label('Համայնք <em>*</em>') ?>
+                <?= $form->field($model, 'community')->dropDownList(Schools::GetCommunity($model->region, $model->city), ['autofocus' => true, 'class' => '', 'id' => 'community'])->label('Համայնք <em>*</em>') ?>
             </div>
             <div class="form-fld">
-                <?= $form->field($model, 'school')->dropDownList(Data::GetSchool()[$model->region][$model->city][$model->community], ['autofocus' => true, 'class' => '', 'id' => 'school'])->label('Դպրոց <em>*</em>') ?>
+                <?= $form->field($model, 'school')->dropDownList(Schools::GetSchool($model->region, $model->city, $model->community), ['autofocus' => true, 'class' => '', 'id' => 'school'])->label('Դպրոց <em>*</em>') ?>
             </div>
             <div class="form-fld">
                 <?= $form->field($model, 'grade')->dropDownList([

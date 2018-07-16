@@ -162,3 +162,7 @@ a.desc:after {
 .m_lessons .video {
     background-color: #03c0ef;
 }
+
+.hide-b{
+    display: none;
+}

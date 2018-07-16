@@ -31,8 +31,23 @@ class Helper
         if (!empty($array['right_3'])) {
             $s[] = 3;
         }
-        if (!empty($array['right_4'])) {
-            $s[] = 4;
+        if (!empty($array['right_5'])) {
+            $s[] = 5;
+        }
+        if (!empty($array['right_6'])) {
+            $s[] = 6;
+        }
+        if (!empty($array['right_7'])) {
+            $s[] = 7;
+        }
+        if (!empty($array['right_8'])) {
+            $s[] = 8;
+        }
+        if (!empty($array['right_9'])) {
+            $s[] = 9;
+        }
+        if (!empty($array['right_10'])) {
+            $s[] = 10;
         }
         if (!empty($s)) {
             return implode(',', $s);
@@ -80,5 +95,16 @@ class Helper
         $m = floor(($seconds % 3600) / 60);
         $s = $seconds - ($h * 3600) - ($m * 60);
         return sprintf('%02d:%02d:%02d', $h, $m, $s);
+    }
+
+    public static function GetPreTestPoint($answers, $data)
+    {
+        $c = 0;
+        foreach ($answers as $k => $d) {
+            if ($d == $data[$k]) {
+                $c++;
+            }
+        }
+        return floor($c / count($answers) * 100);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\User;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -184,6 +185,15 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionRequestPasswordResetSave()
+    {
+        $model = new ResetPasswordForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
+            return $this->redirect('login');
+        }
+        return $this->redirect('/');
+    }
+
     /**
      * Requests password reset.
      *
@@ -192,18 +202,26 @@ class SiteController extends Controller
     public function actionRequestPasswordReset()
     {
         $model = new PasswordResetRequestForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-
-                return $this->goHome();
-            } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
+        $w = 'requestPasswordResetToken';
+        $user = null;
+        if ($model->load(Yii::$app->request->post())) {
+            if (!empty($model->username)) {
+                $w = 'requestPasswordResetToken_user';
+                $user = User::GetUserByUserName($model->username);
+            }
+            if ($model->validate()) {
+                if ($model->CheckUser()) {
+                    $w = 'requestPasswordResetToken_res';
+                    $model = new ResetPasswordForm();
+                } else {
+                    return $this->redirect('/');
+                }
             }
         }
 
-        return $this->render('requestPasswordResetToken', [
+        return $this->render($w, [
             'model' => $model,
+            'user' => $user,
         ]);
     }
 
