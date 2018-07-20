@@ -22,6 +22,8 @@
                     ['label' => 'Video Lessons', 'icon' => 'file-code-o', 'url' => ['/video-lesson']],
                     ['label' => 'Lessons', 'icon' => 'file-code-o', 'url' => ['/lessons']],
                     ['label' => 'Lessons Group', 'icon' => 'file-code-o', 'url' => ['/lessons-group']],
+                    ['label' => 'Users', 'icon' => 'file-code-o', 'url' => ['/user']],
+                    ['label' => 'Users Lessons', 'icon' => 'file-code-o', 'url' => ['/user-tests-state']],
                 ],
             ]
         ) ?>

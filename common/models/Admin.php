@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use backend\components\Helper;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -20,21 +19,9 @@ use yii\web\IdentityInterface;
  * @property string $auth_key
  * @property string $first_name
  * @property string $last_name
- * @property integer $sex
- * @property integer $region
- * @property integer $city
- * @property integer $community
- * @property integer $grade
- * @property integer $current_grade
- * @property integer $school
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
- * @property integer $question_id
- * @property integer $answer
  * @property string $password write-only password
  */
-class User extends ActiveRecord implements IdentityInterface
+class Admin extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
@@ -45,7 +32,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function tableName()
     {
-        return '{{%user}}';
+        return '{{%admin}}';
     }
 
     /**
@@ -66,45 +53,10 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            [['first_name', 'last_name', 'sex', 'region', 'city', 'community', 'school', 'grade', 'question_id', 'answer'], 'required'],
+            [['first_name', 'last_name'], 'required'],
         ];
     }
 
-    public static function SaveUserData($data)
-    {
-        $user = self::findOne(Yii::$app->user->getId());
-        $user->first_name = $data['first_name'];
-        $user->last_name = $data['last_name'];
-        $user->sex = $data['sex'];
-        $user->region = $data['region'];
-        $user->city = $data['city'];
-        $user->community = $data['community'];
-        $user->school = $data['school'];
-        $user->grade = $data['grade'];
-        return $user->save();
-    }
-
-    public static function UpdateGrade($grade)
-    {
-        $user = self::findOne(Yii::$app->user->getId());
-        $user->current_grade = $grade;
-        return $user->save();
-    }
-
-    public static function GetUserByUserName($user)
-    {
-        return self::findOne(['username' => $user]);
-    }
-
-    public static function GetAllUsers()
-    {
-        return self::find()->select(["concat(`first_name`,' ', `last_name`) as name", "id" ])->indexBy('id')->column();
-    }
-
-    public static function GetAllUserById($id)
-    {
-        return self::find()->select(["concat(`first_name`,' ', `last_name`) as name"])->asArray()->one()['name'];
-    }
     /**
      * {@inheritdoc}
      */

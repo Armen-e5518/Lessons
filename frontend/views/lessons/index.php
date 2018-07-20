@@ -49,7 +49,7 @@ $flag = true;
                     <li class="<?= $class ?>">
                         <a href="<?= $href ?>"><i
                                     class="fas fa-check"></i><strong><?= $item['title'] ?></strong></a>
-                        <?php if (!empty($item['u_status'])): ?>
+                        <?php if (!empty($item['u_status']) && false): ?>
                             <span class="score">Միավորներ՝ <?= $item['point'] ?> / 100</span>
                         <?php endif; ?>
 
@@ -61,7 +61,8 @@ $flag = true;
 
         <?php if ($class == 'passed-lesson'): ?>
             <div class="propmt-access">
-                <a  href="/profile/change" style="font-size: 19px" class="btn blue-btn" name="contact-button">Փոխել դասընթացը</a>
+                <a href="/profile/change" style="font-size: 19px" class="btn blue-btn" name="contact-button">Փոխել
+                    դասընթացը</a>
             </div>
         <?php endif; ?>
     </div>

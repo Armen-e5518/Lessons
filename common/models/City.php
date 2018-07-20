@@ -41,5 +41,9 @@ class City extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function GetAll()
+    {
+        return self::find()->select(['name', 'id'])->indexBy('id')->column();
+    }
 
 }

@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    setTimeout(function () {
+        $('.message').fadeOut(500);
+    }, 1500)
+
     $('#region').change(function () {
         var ob = $(this);
         var data = {};
@@ -24,7 +28,7 @@ $(document).ready(function () {
         var ob = $(this);
         var data = {};
         data.city_id = ob.val();
-        data.region_id =  $('#region').val();
+        data.region_id = $('#region').val();
         $.ajax({
             type: "POST",
             url: "/ajax/get-community", //actionGetCommunity
@@ -45,7 +49,7 @@ $(document).ready(function () {
         var data = {};
         data.community_id = ob.val();
         data.city_id = $('#city').val();
-        data.region_id =  $('#region').val();
+        data.region_id = $('#region').val();
         $.ajax({
             type: "POST",
             url: "/ajax/get-school", //actionGetSchool

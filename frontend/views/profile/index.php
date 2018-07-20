@@ -27,6 +27,21 @@ $this->params['profile'] = 'true';
 <section class="edit-profile-info">
     <div class="container">
         <div class="propmt-access regis-login registration">
+            <?php if ($p): ?>
+                <?php if ($f): ?>
+                    <div class="message success">
+                        <div class="text-m">
+                            Հաջողված է․․․
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div class="message error">
+                        <div class="text-m">
+                            Սխալ․․․
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
             <?php $form = \yii\widgets\ActiveForm::begin(['id' => 'form-signup']); ?>
             <div class="form-fld">
                 <?= $form->field($model, 'first_name')->textInput(['autofocus' => true, 'class' => ''])->label('Անուն <em>*</em>') ?>

@@ -13,7 +13,7 @@ class SignupForm extends Model
     public $username;
 //    public $email;
     public $password;
-    public $password_com;
+//    public $password_com;
     public $first_name;
     public $last_name;
     public $city;
@@ -41,8 +41,8 @@ class SignupForm extends Model
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
 
-            ['password_com', 'required'],
-            ['password_com', 'compare', 'compareAttribute' => 'password', 'message' => "Passwords don't match"],
+//            ['password_com', 'required'],
+//            ['password_com', 'compare', 'compareAttribute' => 'password', 'message' => "Passwords don't match"],
 
             [['first_name', 'last_name', 'sex', 'region', 'city', 'community', 'school', 'grade', 'answer', 'question_id'], 'required'],
             [['sex', 'region', 'city', 'community', 'school', 'grade', 'question_id'], 'integer'],

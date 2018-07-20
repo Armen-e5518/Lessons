@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use backend\components\Helper;
 use Yii;
 
 /**
@@ -14,9 +15,13 @@ use Yii;
  * @property int $lesson_id
  * @property int $point
  * @property int $lesson_type
+ * @property int $region
  */
 class UserTestsState extends \yii\db\ActiveRecord
 {
+
+    public $school;
+    public $city;
 
     const STATUS_PASSED = 1;
 //    const STATUS_CURRENT = 1;
@@ -36,7 +41,14 @@ class UserTestsState extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'status', 'grade', 'lesson_id', 'point', 'lesson_type'], 'integer'],
+            [[
+                'user_id',
+                'status',
+                'grade',
+                'lesson_id',
+                'point',
+                'lesson_type',
+            ], 'integer'],
         ];
     }
 
@@ -47,10 +59,10 @@ class UserTestsState extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
+            'user_id' => 'User',
             'status' => 'Status',
             'grade' => 'Grade',
-            'lesson_id' => 'Lesson Group ID',
+            'lesson_id' => 'Lesson',
             'lesson_type' => 'lesson_type',
             'point' => 'Point',
         ];
@@ -128,5 +140,11 @@ class UserTestsState extends \yii\db\ActiveRecord
             'status' => self::STATUS_PASSED,  //1
         ]);
         return empty($STATUS_UPCOMING) && !empty($STATUS_PASSED);
+    }
+
+    public function GetLessonName($id, $type)
+    {
+        $LessonGroupRel = LessonGropuRel::GetAll();
+        return Helper::GetLessonName($LessonGroupRel, $id, $type);
     }
 }

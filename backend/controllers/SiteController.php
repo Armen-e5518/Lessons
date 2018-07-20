@@ -1,11 +1,12 @@
 <?php
 namespace backend\controllers;
 
+use armen\src\AutoloadExample;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
+use backend\models\LoginForm;
 
 /**
  * Site controller
@@ -60,7 +61,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->redirect('lessons-group');
+        return $this->redirect('/admin/lessons-group');
 //        return $this->render('index');
     }
 

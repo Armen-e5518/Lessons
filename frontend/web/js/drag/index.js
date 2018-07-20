@@ -11,12 +11,14 @@ function GetItem(id) {
 $(document).ready(function () {
 
     $('#next').attr('href', '/test/next-lesson?id=' + __id + '&g=' + __global_id + '&type=' + __Type);
-    $('#pop_text').html(__pop_text);
+    if (__pop_text) {
+        $('#pop_text').html(__pop_text);
+    }
 
-    $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+    $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
 
     $(".user-avatar-small").click(function () {
-        $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+        $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
     });
     $(".lesson-popup-close, #pop_button").click(function () {
         $(".lesson-popup-layer").css({"opacity": "0", "z-index": "-1"});
@@ -37,7 +39,7 @@ $(document).ready(function () {
                 //     $('#pop_text').html(data.text);
                 //     $('#pop_button').show();
                 //     $('#pop_button').html('Վերադասավորել');
-                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
                 //     $("#sortable1, #sortable3").sortable("cancel");
                 // } else {
                 //     var data = GetItem(ui.item.attr('data-id'));
@@ -49,7 +51,7 @@ $(document).ready(function () {
                 //     $('#pop_title i').show();
                 //     $('#pop_button').html('Հաջորդ դասը');
                 //     $('#sortable3 strong').hide();
-                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
                 //
                 //     console.log('Else')
                 // }
@@ -79,7 +81,7 @@ $(document).ready(function () {
                 //     $('#pop_text').html(data.text);
                 //     $('#pop_button').show();
                 //     $('#pop_button').html('Վերադասավորել');
-                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
                 //     $("#sortable1, #sortable3").sortable("cancel");
                 //                 // } else {
                 //     var data = GetItem(ui.item.attr('data-id'));
@@ -91,7 +93,7 @@ $(document).ready(function () {
                 //     $('#pop_title i').show();
                 //     $('#pop_button').html('Հաջորդ դասը');
                 //     $('#sortable3 strong').hide();
-                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
                 //
                 //     console.log('Else')
                 // }
@@ -121,7 +123,7 @@ $(document).ready(function () {
                 //     $('#pop_text').html(data.text);
                 //     $('#pop_button').show();
                 //     $('#pop_button').html('Վերադասավորել');
-                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
                 //     $("#sortable1, #sortable3").sortable("cancel");
                 // } else {
                 //     var data = GetItem(ui.item.attr('data-id'));
@@ -133,7 +135,7 @@ $(document).ready(function () {
                 //     $('#pop_title i').show();
                 //     $('#pop_button').html('Հաջորդ դասը');
                 //     $('#sortable3 strong').hide();
-                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
                 //
                 //     console.log('Else')
                 // }
@@ -165,7 +167,7 @@ $(document).ready(function () {
                 //     $('#pop_text').html(data.text);
                 //     $('#pop_button').show();
                 //     $('#pop_button').html('Վերադասավորել');
-                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
                 //     $("#sortable1, #sortable3").sortable("cancel");
                 // } else {
                 //     var data = GetItem(ui.item.attr('data-id'));
@@ -177,7 +179,7 @@ $(document).ready(function () {
                 //     $('#pop_title i').show();
                 //     $('#pop_button').html('Հաջորդ դասը');
                 //     $('#sortable3 strong').hide();
-                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+                //     $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
                 //
                 //     console.log('Else')
                 // }
@@ -203,7 +205,7 @@ $(document).ready(function () {
                 $('#pop_button').show();
                 $('#pop_button').html('Վերադասավորել');
                 $('#pop_button').attr('href', '#');
-                $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+                $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
             } else {
                 var data = GetItem($('#sortable2 .factor-item').attr('data-id'));
                 $('#pop_title').show();
@@ -216,7 +218,7 @@ $(document).ready(function () {
                 $('#pop_button').html('Հաջորդ դասը');
                 $('#pop_button').attr('href', '/test/next-lesson?id=' + __id + '&g=' + __global_id + '&type=' + __Type);
                 $('#sortable3 strong').hide();
-                $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+                $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
                 SaveUserTestData()
                 console.log('Else')
             }

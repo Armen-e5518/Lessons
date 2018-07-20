@@ -35,12 +35,17 @@ class ProfileController extends Controller
     public function actionIndex()
     {
 
+        $f = false;
+        $p = false;
         if (Yii::$app->request->post('User')) {
-            User::SaveUserData(Yii::$app->request->post('User'));
+            $p = true;
+            $f = User::SaveUserData(Yii::$app->request->post('User'));
         }
         $model = User::findIdentity(Yii::$app->user->getId());
         return $this->render('index', [
             'model' => $model,
+            'f' => $f,
+            'p' => $p,
         ]);
     }
 
@@ -132,6 +137,35 @@ class ProfileController extends Controller
 
     public function actionCertificates()
     {
-        return $this->render('certificates', []);
+        $CheckUserLesson_8 = UserTestsState::CheckUserLesson(8);
+        $CheckUserLesson_9 = UserTestsState::CheckUserLesson(9);
+        $CheckUserLesson_10 = UserTestsState::CheckUserLesson(10);
+        $CheckUserLesson_11 = UserTestsState::CheckUserLesson(11);
+        return $this->render('certificates', [
+            'class_8' => [
+                'link' => ($CheckUserLesson_8) ? '/profile/download-certificates?g=8' : '#',
+                'class' => ($CheckUserLesson_8) ? 'active-certificate' : 'inactive-certificate',
+            ],
+            'class_9' => [
+                'link' => ($CheckUserLesson_9) ? '/profile/download-certificates?g=9' : '#',
+                'class' => ($CheckUserLesson_9) ? 'active-certificate' : 'inactive-certificate',
+            ],
+            'class_10' => [
+                'link' => ($CheckUserLesson_10) ? '/profile/download-certificates?g=10' : '#',
+                'class' => ($CheckUserLesson_10) ? 'active-certificate' : 'inactive-certificate',
+            ],
+            'class_11' => [
+                'link' => ($CheckUserLesson_11) ? '/profile/download-certificates?g=11' : '#',
+                'class' => ($CheckUserLesson_11) ? 'active-certificate' : 'inactive-certificate',
+            ],
+        ]);
+    }
+
+    public function actionDownloadCertificates($g)
+    {
+        if (UserTestsState::CheckUserLesson($g)) {
+            return Yii::$app->response->SendFile(Yii::getAlias('@webroot') . '/certificates/CSA_Certificate_PP-H-J_MCCB.pdf');
+        }
+        return $this->redirect('/lessons');
     }
 }

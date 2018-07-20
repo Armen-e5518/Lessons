@@ -57,7 +57,7 @@ class TestController extends Controller
                 if (!empty($all_lessons[$k + 1])) {
                     $next_lesson = $all_lessons[$k + 1];
                 } else {
-                    UserTestsState::UpdateData($g, LessonGropuRel::TYPE_GLOB, 55, 0);
+                    UserTestsState::UpdateData($g, LessonGropuRel::TYPE_GLOB, 0, 0);
                     return $this->redirect('/lessons');
                 }
             }

@@ -53,6 +53,8 @@ $this->params['lessons'] = 'true';
             <?php if (!empty($data['text_2'])): ?>
                 <h3><?= $data['text_2'] ?></h3>
             <?php endif; ?>
+            <div class="propmt-access">
+                <a type="submit" class="btn blue-btn next_button" name="contact-button">Առաջ <i class="fas fa-arrow-right"></i></a>
         </div>
     </div>
 </section>

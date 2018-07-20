@@ -56,7 +56,14 @@ class Schools extends \yii\db\ActiveRecord
         ];
     }
 
-
+    public static function GetAllSchools()
+    {
+        return self::find()->select(['name', 'id'])->indexBy('id')->column();
+    }
+    public static function GetAllSchoolById($id)
+    {
+        return self::findOne($id)['name'];
+    }
     public static function GetCityByRegion($id)
     {
         $city_ids = self::find()->select('city')->where(['region' => $id])->groupBy('city')->indexBy('city')->column();
@@ -79,61 +86,4 @@ class Schools extends \yii\db\ActiveRecord
             ->column();
     }
 
-    public static function get()
-    {
-        $model = new self();
-        $region_id = null;
-        $city_id = null;
-        $Community = null;
-        $data = $model->find()->asArray()->all();
-        foreach ($data as $d) {
-            if (empty($d['name'])) {
-                self::deleteAll(['id' => $d['id']]);
-            }
-//            if (!is_numeric($d['region'])) {
-//                $region_id = Region::find()->where(['name' => $d['region']])->one()['id'];
-//                Helper::out($d['region']);
-//                Helper::out($region_id);
-//            }
-//            if (!empty($d['city'])) {
-//                $city = City::find()->where(['name' => $d['city']])->one();
-//                if (empty($city)) {
-//                    $m = new City();
-//                    $m->name = $d['city'];
-//                    $m->save();
-//                    $city_id = $m->id;
-//                } else {
-//                    $city_id = $city['id'];
-//                }
-//            }
-//            if (!empty($d['community'])) {
-//                $Community = Community::find()->where(['name' => $d['community']])->one();
-//                if (empty($Community)) {
-//                    $m = new Community();
-//                    $m->name = $d['community'];
-//                    $m->save();
-//                    $Community_id = $m->id;
-//                } else {
-//                    $Community_id = $Community['id'];
-//                }
-//            }
-//            if (!empty($region_id) && !empty($city_id) && !empty($Community)) {
-//                $mm = self::findOne(['id' => $d['id']]);
-//                $mm->region =(string) $region_id;
-//                $mm->city = (string)$city_id;
-//                $mm->community = (string)$Community_id;
-//                if((!$mm->save())){
-//                    Helper::out($city_id);
-//                    Helper::out($mm->getErrors());
-//                };
-//                echo  '<br>';
-//            }else{
-//                echo  'Nooooooooooooo';
-//                echo  '<br>';
-//            }
-//            $region_id = null;
-//            $city_id = null;
-//            $Community_id = null;
-        }
-    }
 }

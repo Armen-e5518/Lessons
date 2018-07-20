@@ -1,8 +1,10 @@
 $(document).ready(function () {
-    $('#pop_text').html(__pop_text);
-    $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+    if (__pop_text) {
+        $('#pop_text').html(__pop_text);
+    }
+    $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
     $(".user-avatar-small").click(function () {
-        $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+        $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
     });
     $(".lesson-popup-close").click(function () {
         $(".lesson-popup-layer").css({"opacity": "0", "z-index": "-1"});
@@ -22,7 +24,7 @@ $(document).ready(function () {
         } else {
             $('#pop_button').show().html('Հաջորդ դասը').attr('href', '/test/next-lesson?id=' + __choose_test_id + '&g=' + __global_id + '&type=' + __Type);
             $('.lesson-popup-close').hide();
-            $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+            $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
             SaveUserTestData()
         }
 
@@ -37,7 +39,7 @@ $(document).ready(function () {
         } else {
             $('#pop_button').show().html('Հաջորդ դասը').attr('href', '/test/next-lesson?id=' + __choose_test_id + '&g=' + __global_id + '&type=' + __Type);
             $('.lesson-popup-close').hide();
-            $(".lesson-popup-layer").css({"opacity": "1", "z-index": "0"});
+            $(".lesson-popup-layer").css({"opacity": "1", "z-index": "2"});
             SaveUserTestData()
         }
     })

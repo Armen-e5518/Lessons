@@ -64,7 +64,7 @@ AppAsset::register($this);
                                         class="fas fa-angle-down"></i></button>
                             <div id="myDropdown" class="dropdown-content">
                                 <a href="/profile" class=" <?= !empty($this->params['profile']) ? 'green-txt' : '' ?>">Իմ էջ</a>
-                                <a href="/profile/certificates" class=" <?= !empty($this->params['profile']) ? 'green-txt' : '' ?>">Իմ էջ</a>
+                                <a href="/profile/certificates" class=" <?= !empty($this->params['certificates']) ? 'green-txt' : '' ?>">Իմ սերտիֆիկատները</a>
                                 <?= Html::beginForm(['/site/logout'], 'post')
                                 . Html::submitButton(
                                     'Ելք ',

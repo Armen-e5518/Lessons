@@ -134,6 +134,44 @@ class LessonGropuRel extends \yii\db\ActiveRecord
             ->all();
     }
 
+    public static function GetAll()
+    {
+        $query1 = new Query();
+        $query2 = new Query();
+        $query3 = new Query();
+
+        $query1->select([
+            'lt.id',
+            'lt.type',
+            'lt.lesson_id',
+            't.title',
+            'u.lesson_type',
+
+        ])
+            ->from(self::tableName() . ' lt')
+            ->leftJoin(PreTests::tableName() . ' t', 't.id = lt.lesson_id')
+            ->leftJoin(UserTestsState::tableName() . ' u', 'u.lesson_id = lt.lesson_id  AND u.lesson_type = ' . self::TYPE_PRE)
+            ->where(['lt.type' => self::TYPE_PRE]);
+        $query2->select([
+            'lt.id',
+            'lt.type',
+            'lt.lesson_id',
+            't.title',
+            'u.lesson_type',
+        ])
+            ->from(self::tableName() . ' lt')
+            ->leftJoin(Lessons::tableName() . ' t', 't.id = lt.lesson_id')
+            ->leftJoin(UserTestsState::tableName() . ' u', 'u.lesson_id = lt.lesson_id AND u.lesson_type = ' . self::TYPE_GLOB)
+            ->where(['lt.type' => self::TYPE_GLOB]);
+
+        $query1->union($query2, true);
+
+        return $query3->select(['*'])
+            ->from(['t' => $query1])
+            ->groupBy('id')
+            ->all();
+    }
+
     public static function GetAllByLessonGroupId($id)
     {
         return self::find()->where(['lesson_group_id' => $id])->asArray()->orderBy('sorting')->all();

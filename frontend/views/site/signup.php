@@ -61,17 +61,15 @@ $this->params['signup'] = 'true';
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'class' => ''])->label('Օգտանուն <em>*</em>') ?>
             </div>
             <div class="form-fld">
+                <?= $form->field($model, 'password')->passwordInput(['class' => ''])->label('Գաղտնաբառ <em>*</em>') ?>
+            </div>
+            <div class="form-fld">
                 <?= $form->field($model, 'question_id')->dropDownList(Data::GetQuestions(), ['autofocus' => true, 'class' => ''])->label('Հարց <em>*</em>') ?>
             </div>
             <div class="form-fld">
                 <?= $form->field($model, 'answer')->textInput(['autofocus' => true, 'class' => ''])->label('Պատասխան <em>*</em>') ?>
             </div>
-            <div class="form-fld">
-                <?= $form->field($model, 'password')->passwordInput(['class' => ''])->label('Գաղտնաբառ <em>*</em>') ?>
-            </div>
-            <div class="form-fld">
-                <?= $form->field($model, 'password_com')->passwordInput(['class' => ''])->label('Գաղտնաբառ <em>*</em>') ?>
-            </div>
+
             <div class="signup-btn">
                 <?= \yii\helpers\Html::submitButton('Հաստատել', ['class' => 'btn green-btn', 'name' => 'signup-button']) ?>
             </div>

@@ -10,7 +10,9 @@ $this->registerCssFile('https://use.fontawesome.com/releases/v5.0.13/css/all.css
 $this->registerCssFile('//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
 
 $this->registerJsFile('//code.jquery.com/jquery-1.12.4.js');
+
 $this->registerJsFile('//code.jquery.com/ui/1.12.1/jquery-ui.js');
+$this->registerJsFile('//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js');
 $this->registerJsFile('/js/drag/index.js');
 $this->registerJsFile('/js/timer.js');
 

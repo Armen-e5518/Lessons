@@ -107,4 +107,14 @@ class Helper
         }
         return floor($c / count($answers) * 100);
     }
+
+    public static function GetLessonName($data, $lesson_id, $type)
+    {
+        foreach ($data as $d) {
+            if ($d['type'] == $type && $d['lesson_id'] = $lesson_id) {
+                return $d['title'];
+            }
+        }
+        return '';
+    }
 }
